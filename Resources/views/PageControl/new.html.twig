@@ -1,0 +1,26 @@
+{% from 'BtnCrudBundle::breadcrumb.html.twig' import breadcrumb %}
+{% extends '::control.html.twig' %}
+
+{% form_theme form 'BtnCrudBundle:Form:fields.html.twig' %}
+
+{% block content %}
+
+    <form action="{{ path('cp_page_create') }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
+          <fieldset>
+              <legend>Page creation</legend>
+              {{ form_widget(form) }}
+              <p>
+                  <button type="submit" class="btn btn-success">{% trans %}crud.create{% endtrans %}</button>
+              </p>
+        </fieldset>
+    </form>
+
+            <a href="{{ path('cp_page') }}" class="btn">
+        &laquo; {% trans %}crud.back{% endtrans %}
+    </a>
+
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ breadcrumb({'cp_page': 'crud.breadcrumb.list', 'cp_page_new': 'crud.breadcrumb.new'}) }}
+{% endblock %}

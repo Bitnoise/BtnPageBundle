@@ -1,0 +1,37 @@
+{% from 'BtnCrudBundle::breadcrumb.html.twig' import breadcrumb %}
+{% extends '::control.html.twig' %}
+
+{% block content %}
+
+    <h2>Page</h2>
+
+    <table class="table table-striped table-bordered table-condensed">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ entity.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ entity.content }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+            <form action="{{ path('cp_page_delete', { 'id': entity.id }) }}" method="post">
+        {{ form_widget(delete_form) }}
+        <a href="{{ path('cp_page') }}" class="btn">
+            &laquo; {% trans %}crud.back{% endtrans %}
+        </a>
+        <button type="submit" class="btn btn-danger">{% trans %}crud.delete{% endtrans %}</button>
+    </form>
+
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ breadcrumb({'cp_page': 'crud.breadcrumb.list', 'cp_page_show': 'crud.breadcrumb.show'}) }}
+{% endblock %}
