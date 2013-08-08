@@ -16,7 +16,8 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.*",
-        "gedmo/doctrine-extensions": "*"
+        "gedmo/doctrine-extensions": "*",
+        "egeloen/ckeditor-bundle": "2.*"
     },
     "autoload": {
         "psr-0": { "Btn\\PageBundle": "" }
