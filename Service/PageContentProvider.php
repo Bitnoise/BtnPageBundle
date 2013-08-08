@@ -34,20 +34,26 @@ class PageContentProvider implements NodeContentProviderInterface
         return new NodeContentType($data);
     }
 
-    public function resolveRouteName($formData = array())
+    public function resolveRoute($formData = array())
     {
-        //resolve from request and return the route name for node in nodes tree
-        $routeName = $this->router->generate('page_show', array('id' => $formData['page']));
 
-        return $routeName;
+        return 'page_show';
     }
 
-
-    public function resolveControlRouteName($formData = array())
+    public function resolveRouteParameters($formData = array())
     {
-        //resolve from request and return the route name for node in nodes tree
-        $routeName = $this->router->generate('cp_page_edit', array('id' => $formData['page']));
 
-        return $routeName;
+        return array('id' => $formData['page']);
+    }
+
+    public function resolveControlRoute($formData = array())
+    {
+
+        return 'cp_page_edit';
+    }
+
+    public function resolveControlRouteParameters($formData = array())
+    {
+        return array('id' => $formData['page']);
     }
 }
