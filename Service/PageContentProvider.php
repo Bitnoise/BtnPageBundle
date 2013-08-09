@@ -13,6 +13,7 @@ class PageContentProvider implements NodeContentProviderInterface
 {
 
     private $router;
+    private $em;
 
     public function __construct($router, $em)
     {
