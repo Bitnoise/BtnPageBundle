@@ -8,6 +8,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class PageType extends AbstractType
 {
+    private $ckeditor;
+
+    public function __construct($ckeditor)
+    {
+        $this->ckeditor = $ckeditor;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -41,7 +48,8 @@ class PageType extends AbstractType
                             'items' => array('Styles','Format','Font','FontSize'),
                         ),
                     ),
-                    'uiColor' => '#ffffff',
+                    'uiColor'                   => '#ffffff',
+                    'filebrowserImageBrowseUrl' => $this->ckeditor['filebrowserImageBrowseUrl']
                 ))
             )
         ;
