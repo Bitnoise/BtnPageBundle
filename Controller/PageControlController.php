@@ -74,10 +74,20 @@ class PageControlController extends Controller
      * @Route("/new", name="cp_page_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
+        $modalRoute = 
+            $request->getScheme() . '://' . $request->getHttpHost() .
+            $this->get('router')->getRouteCollection()->get('cp_media_list_modal')->getPath();
+
+        $modalRoute .= '?separated=true';
+
+        $ckeditor = array(
+            'filebrowserImageBrowseUrl' => $modalRoute
+        );
+
         $entity = new Page();
-        $form   = $this->createForm(new PageType(), $entity);
+        $form   = $this->createForm(new PageType($ckeditor), $entity);
 
         return array(
             'entity' => $entity,
@@ -131,7 +141,11 @@ class PageControlController extends Controller
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
 
-        $editForm = $this->createForm(new PageType(), $entity);
+        $ckeditor = array(
+            'filebrowserImageBrowseUrl' => $modalRoute
+        );
+
+        $editForm = $this->createForm(new PageType($ckeditor), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
