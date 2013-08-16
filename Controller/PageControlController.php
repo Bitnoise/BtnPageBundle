@@ -136,7 +136,7 @@ class PageControlController extends Controller
      * @Route("/{id}/edit", name="cp_page_edit")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
