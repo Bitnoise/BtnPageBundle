@@ -88,7 +88,7 @@ class PageControlController extends Controller
     public function newAction(Request $request)
     {
         $ckeditor = array(
-            'filebrowserImageBrowseUrl' => $this>getModalRoute($request);
+            'filebrowserImageBrowseUrl' => $this->getModalRoute($request)
         );
 
         $entity = new Page();
@@ -147,7 +147,7 @@ class PageControlController extends Controller
         }
 
         $ckeditor = array(
-            'filebrowserImageBrowseUrl' => $this>getModalRoute($request);
+            'filebrowserImageBrowseUrl' => $this->getModalRoute($request)
         );
 
         $editForm = $this->createForm(new PageType($ckeditor), $entity);
