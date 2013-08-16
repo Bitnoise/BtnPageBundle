@@ -68,6 +68,17 @@ class PageControlController extends Controller
         );
     }
 
+    private function getModalRoute($request)
+    {
+        $modalRoute =
+            $request->getScheme() . '://' . $request->getHttpHost() .
+            $this->get('router')->getRouteCollection()->get('cp_media_list_modal')->getPath();
+
+        $modalRoute .= '?separated=true';
+
+        return $modalRoute;
+    }
+
     /**
      * Displays a form to create a new Page entity.
      *
@@ -76,14 +87,8 @@ class PageControlController extends Controller
      */
     public function newAction(Request $request)
     {
-        $modalRoute = 
-            $request->getScheme() . '://' . $request->getHttpHost() .
-            $this->get('router')->getRouteCollection()->get('cp_media_list_modal')->getPath();
-
-        $modalRoute .= '?separated=true';
-
         $ckeditor = array(
-            'filebrowserImageBrowseUrl' => $modalRoute
+            'filebrowserImageBrowseUrl' => $this>getModalRoute($request);
         );
 
         $entity = new Page();
@@ -142,7 +147,7 @@ class PageControlController extends Controller
         }
 
         $ckeditor = array(
-            'filebrowserImageBrowseUrl' => $modalRoute
+            'filebrowserImageBrowseUrl' => $this>getModalRoute($request);
         );
 
         $editForm = $this->createForm(new PageType($ckeditor), $entity);
