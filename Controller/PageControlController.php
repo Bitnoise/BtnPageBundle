@@ -70,7 +70,7 @@ class PageControlController extends Controller
 
     private function getModalRoute($request)
     {
-        return $this->generateUrl('cp_media_list_modal', array('separated' = > true));
+        return $this->generateUrl('cp_media_list_modal', array('separated' => true));
         // $modalRoute =
         //     $request->getScheme() . '://' . $request->getHttpHost() .
         //     $this->get('router')->getRouteCollection()->get('cp_media_list_modal')->getPath();
