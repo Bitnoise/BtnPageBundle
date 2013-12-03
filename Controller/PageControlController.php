@@ -68,18 +68,6 @@ class PageControlController extends Controller
         );
     }
 
-    private function getModalRoute($request)
-    {
-        return $this->generateUrl('cp_media_list_modal', array('separated' => true));
-        // $modalRoute =
-        //     $request->getScheme() . '://' . $request->getHttpHost() .
-        //     $this->get('router')->getRouteCollection()->get('cp_media_list_modal')->getPath();
-
-        // $modalRoute .= '?separated=true';
-
-        // return $modalRoute;
-    }
-
     /**
      * Displays a form to create a new Page entity.
      *
@@ -88,12 +76,8 @@ class PageControlController extends Controller
      */
     public function newAction(Request $request)
     {
-        $ckeditor = array(
-            'filebrowserImageBrowseUrl' => $this->getModalRoute($request)
-        );
-
         $entity = new Page();
-        $form   = $this->createForm(new PageType($ckeditor), $entity);
+        $form   = $this->createForm('btn_pagebundle_pagetype', $entity);
 
         return array(
             'entity' => $entity,
@@ -106,12 +90,12 @@ class PageControlController extends Controller
      *
      * @Route("/create", name="cp_page_create")
      * @Method("POST")
-     * @Template("BtnPageBundle:Page:new.html.twig")
+     * @Template("BtnPageBundle:PageControl:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity  = new Page();
-        $form = $this->createForm(new PageType(), $entity);
+        $entity = new Page();
+        $form   = $this->createForm('btn_pagebundle_pagetype', $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -147,11 +131,7 @@ class PageControlController extends Controller
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
 
-        $ckeditor = array(
-            'filebrowserImageBrowseUrl' => $this->getModalRoute($request)
-        );
-
-        $editForm = $this->createForm(new PageType($ckeditor), $entity);
+        $editForm   = $this->createForm('btn_pagebundle_pagetype', $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -166,7 +146,7 @@ class PageControlController extends Controller
      *
      * @Route("/{id}/update", name="cp_page_update")
      * @Method("POST")
-     * @Template("BtnPageBundle:Page:edit.html.twig")
+     * @Template("BtnPageBundle:PageControl:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -177,9 +157,9 @@ class PageControlController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Page entity.');
         }
-
+        $editForm   = $this->createForm('btn_pagebundle_pagetype', $entity);
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new PageType(), $entity);
+
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
@@ -225,7 +205,7 @@ class PageControlController extends Controller
             $this->getRequest()->getSession()->getFlashBag()->set('success', $msg);
         }
 
-        return $this->redirect($this->generateUrl('cp_page_'));
+        return $this->redirect($this->generateUrl('cp_page'));
     }
 
     private function createDeleteForm($id)
@@ -234,5 +214,33 @@ class PageControlController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+
+    //depricated -> don't use it
+    private function resolveFormClass($template)
+    {
+        //get ckeditor url
+        $ckeditor = $this->generateUrl('cp_media_list_modal', array('separated' => true));
+        if ($template !== null && $template !== '') {
+            //get templates config from params
+            $templatesConf = $this->get('service_container')->getParameter('btn_pages.templates');
+            //get real namespace, don't use _namespace_
+            $matches    = array();
+            $controller = $request->get('_controller');
+            $matches    = explode('\\', $controller);
+            //set form class namespace path
+            $formClass = '\\' . $matches[0] . '\\' .  $matches[1] . '\\Form\\Page' . ucfirst($template) . 'Type';
+            //check if class exsists
+            if (!class_exists($formClass)) {
+                throw $this->createNotFoundException('Unable to find class: ' . $formClass);
+            }
+            $form = new $formClass($ckeditor, $this->getSimpleArrayTemplates($templatesConf));
+        } else {
+            // get default PageType form class
+            $form = new PageType($ckeditor, $this->getSimpleArrayTemplates($templatesConf));
+        }
+        //TODO : do we need to load custom template file ?
+
+        return $form;
     }
 }

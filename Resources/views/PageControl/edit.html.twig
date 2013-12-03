@@ -4,7 +4,7 @@
 {% form_theme edit_form 'BtnCrudBundle:Form:fields.html.twig' %}
 
 {% block content %}
-
+<div id="pageContainer">
     <form action="{{ path('cp_page_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="well form-horizontal" novalidate>
         <fieldset>
             <legend>Page edit</legend>
@@ -15,16 +15,24 @@
         </fieldset>
     </form>
 
-            <form action="{{ path('cp_page_delete', { 'id': entity.id }) }}" method="post">
+    <form action="{{ path('cp_page_delete', { 'id': entity.id }) }}" method="post">
         {{ form_widget(delete_form) }}
         <a href="{{ path('cp_page') }}" class="btn">
             &laquo; {% trans %}crud.back{% endtrans %}
         </a>
-        <button type="submit" class="btn btn-danger">{% trans %}crud.delete{% endtrans %}</button>
+        <button type="submit" class="btn btn-danger delete">{% trans %}crud.delete{% endtrans %}</button>
     </form>
-
+</div>
 {% endblock %}
 
 {% block breadcrumb %}
     {{ breadcrumb({'cp_page': 'crud.breadcrumb.list', 'cp_page_edit': 'crud.breadcrumb.edit'}) }}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+        '@BtnPageBundle/Resources/public/js/page.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

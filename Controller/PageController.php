@@ -18,7 +18,6 @@ class PageController extends Controller
      * Finds and displays a one news
      *
      * @Route("/page/{id}", name="page_show")
-     * @Template()
      */
     public function showAction(Page $page)
     {
@@ -29,6 +28,37 @@ class PageController extends Controller
 
             $backUrl = $this->generateUrl('_btn_slug', array('url' => $url));
         }
-        return array('page' => $page, 'backUrl' => $backUrl);
+
+        $content        = array();
+        $twigTmplName   = '';
+
+        $template = $page->getTemplate();
+
+        if(!empty($template)) {
+            $content      = @unserialize($page->getContent());
+            $templateConf = $this->container->getParameter('btn_pages');
+            $twigTmplName = $templateConf['templates'][$template]['name'];
+            $templateConf = isset($templateConf['templates'][$template]['fields']) ? $templateConf['templates'][$template]['fields'] : null;
+            $twigTmplName = 'BostonsPageBundle:Page:' . $twigTmplName;
+
+            if(is_array($content) && $templateConf) {
+                foreach ($content as $name => $value) {
+                    if(isset($templateConf[$name]) && $templateConf[$name]['type'] === 'entity') {
+                        $orderBy = null;
+                        if (!empty($templateConf[$name]['query_builder']['orderby'])) {
+                            $orderType = !empty($templateConf[$name]['query_builder']['type']) ?
+                                $templateConf[$name]['query_builder']['type'] : 'ASC';
+                            $orderBy = array($templateConf[$name]['query_builder']['orderby'] => $orderType);
+                        }
+                        $content[$name] =
+                            $this->getDoctrine()
+                                 ->getManager()
+                                 ->getRepository($templateConf[$name]['class'])->findById($value, $orderBy);
+                    }
+                }
+            }
+        }
+
+        return array('page' => $page, 'backUrl' => $backUrl, 'content' => $content, 'tmplName' => $twigTmplName);
     }
 }

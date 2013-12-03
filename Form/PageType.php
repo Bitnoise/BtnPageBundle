@@ -5,56 +5,20 @@ namespace Btn\PageBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Btn\PageBundle\Form\EventListener\customFormFactorySubscriber;
 
 class PageType extends AbstractType
 {
-    private $ckeditor;
+    private $customFormFactorySubscriber;
 
-    public function __construct($ckeditor = NULL)
+    public function __construct(CustomFormFactorySubscriber $customFormFactorySubscriber)
     {
-        if($ckeditor != NULL) {
-            $this->ckeditor = $ckeditor;    
-        }
+        $this->customFormFactorySubscriber = $customFormFactorySubscriber;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('title')
-            ->add('content', 'ckeditor', array(
-                'config' => array(
-                    'toolbar' => array(
-                        array(
-                            'name'  => 'basicstyles',
-                            'items' => array('Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'),
-                        ),
-                        array(
-                            'name'  => 'paragraph',
-                            'items' => array('NumberedList','BulletedList','-','Outdent','Indent','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'),
-                        ),
-                        array(
-                            'name'  => 'links',
-                            'items' => array('Link','Unlink','Anchor'),
-                        ),
-                        array(
-                            'name'  => 'insert',
-                            'items' => array('Image','Table','HorizontalRule'),
-                        ),
-                        array(
-                            'name'  => 'document',
-                            'items' => array('Source'),
-                        ),
-                        '/',
-                        array(
-                            'name'  => 'styles',
-                            'items' => array('Styles','Format','Font','FontSize'),
-                        ),
-                    ),
-                    'uiColor'                   => '#ffffff',
-                    'filebrowserImageBrowseUrl' => $this->ckeditor['filebrowserImageBrowseUrl']
-                ))
-            )
-        ;
+        $builder->addEventSubscriber($this->customFormFactorySubscriber);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

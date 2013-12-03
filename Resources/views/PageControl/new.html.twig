@@ -4,7 +4,7 @@
 {% form_theme form 'BtnCrudBundle:Form:fields.html.twig' %}
 
 {% block content %}
-
+  <div id="pageContainer">
     <form action="{{ path('cp_page_create') }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
           <fieldset>
               <legend>Page creation</legend>
@@ -18,9 +18,18 @@
             <a href="{{ path('cp_page') }}" class="btn">
         &laquo; {% trans %}crud.back{% endtrans %}
     </a>
+  </div>
 
 {% endblock %}
 
 {% block breadcrumb %}
     {{ breadcrumb({'cp_page': 'crud.breadcrumb.list', 'cp_page_new': 'crud.breadcrumb.new'}) }}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+        '@BtnPageBundle/Resources/public/js/page.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
