@@ -39,7 +39,6 @@ class PageController extends Controller
             $templateConf = $this->container->getParameter('btn_pages');
             $twigTmplName = $templateConf['templates'][$template]['name'];
             $templateConf = isset($templateConf['templates'][$template]['fields']) ? $templateConf['templates'][$template]['fields'] : null;
-            $twigTmplName = 'BostonsPageBundle:Page:' . $twigTmplName;
 
             if(is_array($content) && $templateConf) {
                 foreach ($content as $name => $value) {
