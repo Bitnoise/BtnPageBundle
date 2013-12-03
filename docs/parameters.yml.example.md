@@ -1,3 +1,6 @@
+Example parameters configuration
+================================
+
 ``` yml
 parameters:
     btn_pages:
