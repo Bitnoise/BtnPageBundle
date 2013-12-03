@@ -48,3 +48,7 @@ btn_page:
 ``` bash
 $ php app/console doctrine:schema:update --force
 ```
+
+### Step 5: Setup parameters 
+
+[example parameters](https://github.com/Bitnoise/BtnPageBundle/blob/master/docs/parameters.yml.example.md)
