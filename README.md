@@ -28,6 +28,7 @@ public function registerBundles()
     $bundles = array(
         // ...
         new Btn\PageBundle\BtnPageBundle(),
+        new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
     );
 }
 ```
