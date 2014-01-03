@@ -94,10 +94,11 @@ class CustomFormBuilder
     public function setTemplateSelect($templates)
     {
         $this->form->add('template', 'choice', array(
+            'label'     => 'site.template',
             'choices'   => $templates,
             'attr'      => array('class' => 'on-template-change'),
             'mapped'    => TRUE,
-            'empty_value' => 'Choose template...'
+            'empty_value' => 'site.template_empty_value'
         ));
     }
 

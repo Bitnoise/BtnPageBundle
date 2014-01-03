@@ -5,3 +5,5 @@ page:
     create: Dodaj stronę
     content: Zawartość
     edit: Edycja strony
+    template: Szablon
+    template_empty_value: Wybierz szablon...
