@@ -6,12 +6,14 @@
 {% block content %}
   <div id="pageContainer">
     <form action="{{ path('cp_page_create') }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
-          <fieldset>
-              <legend>{% trans %}page.create{% endtrans %}</legend>
-              {{ form_widget(form) }}
-              <p>
-                  <button type="submit" class="btn btn-success">{% trans %}crud.create{% endtrans %}</button>
-              </p>
+        <fieldset>
+            <legend>{% trans %}page.create{% endtrans %}</legend>
+            {{ form_widget(form) }}
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">{% trans %}crud.create{% endtrans %}</button>
+                </div>
+            </div>
         </fieldset>
     </form>
 

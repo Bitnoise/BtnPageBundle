@@ -18,8 +18,8 @@
                 <td>{{ entity.id }}</td>
                 <td>{{ entity.title }}</td>
                 <td>
-                    <a href="{{ path('cp_page_show', { 'id': entity.id }) }}" class="btn btn-primary">{% trans %}crud.show{% endtrans %}</a>
-                    <a href="{{ path('cp_page_edit', { 'id': entity.id }) }}" class="btn btn-primary">{% trans %}crud.edit{% endtrans %}</a>
+                    <a href="{{ path('cp_page_show', { 'id': entity.id }) }}" class="btn btn-small btn-sm btn-primary">{% trans %}crud.show{% endtrans %}</a>
+                    <a href="{{ path('cp_page_edit', { 'id': entity.id }) }}" class="btn btn-small btn-sm btn-primary">{% trans %}crud.edit{% endtrans %}</a>
                 </td>
             </tr>
         {% endfor %}

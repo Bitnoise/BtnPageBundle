@@ -9,9 +9,11 @@
         <fieldset>
             <legend>{% trans %}page.edit{% endtrans %}</legend>
             {{ form_widget(edit_form) }}
-            <p>
-                <button type="submit" class="btn btn-success">{% trans %}crud.save{% endtrans %}</button>
-            </p>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">{% trans %}crud.save{% endtrans %}</button>
+                </div>
+            </div>
         </fieldset>
     </form>
 
