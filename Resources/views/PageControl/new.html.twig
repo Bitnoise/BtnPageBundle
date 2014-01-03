@@ -27,6 +27,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     {% javascripts
         '@BtnPageBundle/Resources/public/js/page.js'
     %}
