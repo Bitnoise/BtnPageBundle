@@ -7,7 +7,7 @@
   <div id="pageContainer">
     <form action="{{ path('cp_page_create') }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
           <fieldset>
-              <legend>Page creation</legend>
+              <legend>{% trans %}page.create{% endtrans %}</legend>
               {{ form_widget(form) }}
               <p>
                   <button type="submit" class="btn btn-success">{% trans %}crud.create{% endtrans %}</button>
@@ -15,9 +15,7 @@
         </fieldset>
     </form>
 
-            <a href="{{ path('cp_page') }}" class="btn">
-        &laquo; {% trans %}crud.back{% endtrans %}
-    </a>
+    <a href="{{ path('cp_page') }}" class="btn">&laquo; {% trans %}crud.back{% endtrans %}</a>
   </div>
 
 {% endblock %}

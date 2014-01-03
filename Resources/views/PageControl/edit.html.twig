@@ -7,7 +7,7 @@
 <div id="pageContainer">
     <form action="{{ path('cp_page_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="well form-horizontal" novalidate>
         <fieldset>
-            <legend>Page edit</legend>
+            <legend>{% trans %}page.edit{% endtrans %}</legend>
             {{ form_widget(edit_form) }}
             <p>
                 <button type="submit" class="btn btn-success">{% trans %}crud.save{% endtrans %}</button>

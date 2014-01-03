@@ -1,0 +1,7 @@
+page:
+    id: Id
+    list: Page list
+    title: Title
+    create: Page creation
+    content: Content
+    edit: Page edit

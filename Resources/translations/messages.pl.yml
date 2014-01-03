@@ -1,0 +1,7 @@
+page:
+    id: Id
+    list: Lista stron
+    title: Tytuł
+    create: Dodaj stronę
+    content: Zawartość
+    edit: Edycja strony
