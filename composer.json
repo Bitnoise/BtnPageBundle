@@ -17,7 +17,7 @@
         "php": ">=5.3.3",
         "symfony/symfony": "2.*",
         "gedmo/doctrine-extensions": "*",
-        "egeloen/ckeditor-bundle": "2.*"
+        "egeloen/ckeditor-bundle": "~2.1"
     },
     "autoload": {
         "psr-0": { "Btn\\PageBundle": "" }
