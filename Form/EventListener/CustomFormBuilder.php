@@ -131,13 +131,19 @@ class CustomFormBuilder
 
     private function getSelectQueryFunction($params)
     {
-        $orderBy    = sprintf('t.%s', $params['query_builder']['orderby']);
+        $orderBy    = $params['query_builder']['orderby'];
         $orderType  = $params['query_builder']['type'];
+        $andwhere   = $params['query_builder']['andwhere'];
 
-        return function(EntityRepository $em) use ($orderBy, $orderType) {
-            return $em
-                ->createQueryBuilder('t')
-                ->orderBy($orderBy, $orderType);
+        return function(EntityRepository $em) use ($orderBy, $orderType, $andwhere) {
+            $qb = $em->createQueryBuilder('e');
+
+            foreach ($andwhere as $criteria) {
+                $qb->andwhere($criteria);
+            }
+
+            $qb->orderBy($orderBy, $orderType);
+            return $qb;
         };
     }
 
