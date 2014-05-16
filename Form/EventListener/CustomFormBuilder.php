@@ -133,7 +133,7 @@ class CustomFormBuilder
     {
         $orderBy    = sprintf('e.%s', $params['query_builder']['orderby']);
         $orderType  = $params['query_builder']['type'];
-        $andwhere   = $params['query_builder']['andwhere'];
+        $andwhere = isset($params['query_builder']['andwhere']) ? $params['query_builder']['andwhere'] : array();
 
         foreach ($andwhere as $i => $conditions) {
             if (count($conditions) === 2) {
