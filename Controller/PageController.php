@@ -37,7 +37,7 @@ class PageController extends Controller
         if(!empty($template)) {
             $content      = @unserialize($page->getContent());
             $templateConf = $this->container->getParameter('btn_pages');
-            $twigTmplName = $templateConf['templates'][$template]['name'];
+            $twigTmplName = isset($templateConf['templates'][$template]['name']) ? $templateConf['templates'][$template]['name'] : null;
             $templateConf = isset($templateConf['templates'][$template]['fields']) ? $templateConf['templates'][$template]['fields'] : null;
 
             if(is_array($content) && $templateConf) {
