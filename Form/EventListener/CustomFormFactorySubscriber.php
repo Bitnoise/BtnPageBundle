@@ -140,7 +140,7 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
         //get page entity
         $page = $event->getForm()->getData();
 
-        if ($data['template'] !== 'show') {
+        if (isset($data['template']) && $data['template'] !== 'show') {
             unset($data['title']);
             unset($data['template']);
 
