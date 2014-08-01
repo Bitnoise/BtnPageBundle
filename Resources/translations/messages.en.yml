@@ -5,5 +5,6 @@ page:
     create: Page creation
     content: Content
     edit: Page edit
+    show: Page show
     template: Template
     template_empty_value: Choose template...
