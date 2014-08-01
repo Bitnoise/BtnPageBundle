@@ -38,9 +38,11 @@ class PageControlController extends Controller
 
         $pagination->setTemplate('BtnCrudBundle:Pagination:default.html.twig');
 
+        $config = $this->container->getParameter('btn_page');
 
         return array(
             'pagination' => $pagination,
+            'list_config' => $config['control']['page']['list'],
         );
     }
 
