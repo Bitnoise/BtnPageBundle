@@ -19,7 +19,7 @@
 
     <form action="{{ path('cp_page_delete', { 'id': entity.id }) }}" method="post">
         {{ form_widget(delete_form) }}
-        <a href="{{ path('cp_page') }}" class="btn">
+        <a href="{{ path('cp_page') }}" class="btn btn-default">
             &laquo; {% trans %}crud.back{% endtrans %}
         </a>
         <button type="submit" data-confirmation="true" data-message="{% trans %}crud.confirm.message{% endtrans %}" data-title="{% trans %}crud.confirm.title{% endtrans %}" class="btn btn-danger delete">{% trans %}crud.delete{% endtrans %}</button>
