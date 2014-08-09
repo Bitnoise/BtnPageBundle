@@ -5,7 +5,6 @@ namespace Btn\PageBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
 use Btn\PageBundle\Entity\Page;
 
 /**
@@ -13,7 +12,6 @@ use Btn\PageBundle\Entity\Page;
  */
 class PageController extends Controller
 {
-
     /**
      * Finds and displays a one news
      *
@@ -34,15 +32,15 @@ class PageController extends Controller
 
         $template = $page->getTemplate();
 
-        if(!empty($template)) {
+        if (!empty($template)) {
             $content      = @unserialize($page->getContent());
             $templateConf = $this->container->getParameter('btn_pages');
             $twigTmplName = isset($templateConf['templates'][$template]['name']) ? $templateConf['templates'][$template]['name'] : null;
             $templateConf = isset($templateConf['templates'][$template]['fields']) ? $templateConf['templates'][$template]['fields'] : null;
 
-            if(is_array($content) && $templateConf) {
+            if (is_array($content) && $templateConf) {
                 foreach ($content as $name => $value) {
-                    if(isset($templateConf[$name]) && $templateConf[$name]['type'] === 'entity') {
+                    if (isset($templateConf[$name]) && $templateConf[$name]['type'] === 'entity') {
                         $orderBy = null;
                         if (!empty($templateConf[$name]['query_builder']['orderby'])) {
                             $orderType = !empty($templateConf[$name]['query_builder']['type']) ?

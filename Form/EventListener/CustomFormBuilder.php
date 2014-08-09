@@ -17,13 +17,13 @@ class CustomFormBuilder
      * $form
      * @var \Symfony\Component\Form\Form
      */
-    private $form = NULL;
+    private $form = null;
 
     /**
      * $ckeditor flag to determine we should use CKEditor or not
      * @var boolean
      */
-    private $ckeditor = FALSE;
+    private $ckeditor = false;
 
     /**
      * $ckeditorConf description
@@ -42,7 +42,7 @@ class CustomFormBuilder
      * @param array $templates
      * @param array $ckeditorConf
      */
-    public function __construct($templates, $em, $ckeditorConf = NULL)
+    public function __construct($templates, $em, $ckeditorConf = null)
     {
         $this->em = $em;
         $this->templates = $templates;
@@ -57,13 +57,13 @@ class CustomFormBuilder
      * setCkeditor set CKEditor config and flag
      * @param array $config
      */
-    public function setCkeditor($config = NULL)
+    public function setCkeditor($config = null)
     {
-        if(!is_array($config)) {
+        if (!is_array($config)) {
             throw new Exception("CKEditor config should be an array.", 1);
         }
 
-        $this->ckeditor     = TRUE;
+        $this->ckeditor     = true;
         $this->ckeditorConf = $config;
     }
 
@@ -143,7 +143,7 @@ class CustomFormBuilder
             }
         }
 
-        return function(EntityRepository $em) use ($orderBy, $orderType, $andwhere) {
+        return function (EntityRepository $em) use ($orderBy, $orderType, $andwhere) {
             $qb = $em->createQueryBuilder('e');
 
             foreach ($andwhere as $criteria) {
@@ -151,6 +151,7 @@ class CustomFormBuilder
             }
 
             $qb->orderBy($orderBy, $orderType);
+
             return $qb;
         };
     }
@@ -160,12 +161,11 @@ class CustomFormBuilder
         if (!empty($this->content[$field])) {
             $content = $this->content[$field];
 
-            if($type === 'entity') {
+            if ($type === 'entity') {
                 /* if entity field was normal select (<select>) */
-                if(is_string($content)) {
+                if (is_string($content)) {
                     $content = $this->em->getRepository($params['class'])->findOneById($content);
-                }
-                else {
+                } else {
                     /* if entity field was multiselect */
                     $content = new ArrayCollection(
                         $this->em->getRepository($params['class'])->findById($content)
@@ -180,7 +180,7 @@ class CustomFormBuilder
     /**
      * addField add passed field to form, also with custom params
      * @param string $field
-     * @param array $params
+     * @param array  $params
      */
     public function addField($field, $params)
     {
@@ -202,9 +202,9 @@ class CustomFormBuilder
     /**
      * addDefault add default CKE Editor as content field
      */
-    public function addDefault($clearContent = FALSE)
+    public function addDefault($clearContent = false)
     {
-        if($clearContent) {
+        if ($clearContent) {
             $this->ckeditorConf['data'] = '';
         }
 

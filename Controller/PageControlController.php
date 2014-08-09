@@ -13,7 +13,7 @@ use Btn\PageBundle\Form\PageType;
 /**
  * Page controller.
  *
- * @Route("/control/page")
+ * @Route("/page")
  */
 class PageControlController extends Controller
 {
@@ -38,11 +38,8 @@ class PageControlController extends Controller
 
         $pagination->setTemplate('BtnCrudBundle:Pagination:default.html.twig');
 
-        $config = $this->container->getParameter('btn_page');
-
         return array(
             'pagination' => $pagination,
-            'list_config' => $config['control']['page']['list'],
         );
     }
 
@@ -242,7 +239,6 @@ class PageControlController extends Controller
             $form = new PageType($ckeditor, $this->getSimpleArrayTemplates($templatesConf));
         }
         //TODO : do we need to load custom template file ?
-
         return $form;
     }
 }

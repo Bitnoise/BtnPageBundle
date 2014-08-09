@@ -5,8 +5,6 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-use Btn\PageBundle\Form\EventListener\CustomFormBuilder;
-
 class CustomFormFactorySubscriber implements EventSubscriberInterface
 {
     /**
@@ -27,7 +25,7 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
     private $formBuilder;
 
     /**
-     * @param array $bundleConf
+     * @param array  $bundleConf
      * @param router $router
      */
     public function __construct($bundleConf = array(), $router, $em)
@@ -156,12 +154,13 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
     public function postBind(FormEvent $event)
     {
         $data = $event->getData();
+
         return $data;
     }
 
     /**
      * getSimpleArrayTemplates prepare simple array for templates select field
-     * @param  array  $templatesConf
+     * @param  array $templatesConf
      * @return array
      */
     private function getSimpleArrayTemplates($templatesConf = array())

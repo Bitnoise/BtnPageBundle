@@ -37,19 +37,16 @@ class PageContentProvider implements NodeContentProviderInterface
 
     public function resolveRoute($formData = array())
     {
-
         return 'page_show';
     }
 
     public function resolveRouteParameters($formData = array())
     {
-
         return array('id' => $formData['page']);
     }
 
     public function resolveControlRoute($formData = array())
     {
-
         return 'cp_page_edit';
     }
 

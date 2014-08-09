@@ -13,7 +13,7 @@ class CustomFieldBuilderSubscriber implements EventSubscriberInterface
     private $templatesConf = array();
 
     /**
-     * @param array $bundleConf
+     * @param array  $bundleConf
      * @param router $router
      */
     public function __construct($bundleConf = array(), $router)

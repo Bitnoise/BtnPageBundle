@@ -1,0 +1,7 @@
+_btn_page_routing_control:
+    resource: "@BtnPageBundle/Resources/config/routing/control.xml"
+    prefix: /control
+
+# _btn_page_routing_front:
+#     resource: "@BtnPageBundle/Resources/config/routing/front.xml"
+#     prefix: /

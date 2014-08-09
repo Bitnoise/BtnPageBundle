@@ -68,7 +68,7 @@ abstract class Page
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string $content
      * @return Page
      */
     public function setContent($content)
@@ -91,7 +91,7 @@ abstract class Page
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Page
      */
     public function setTitle($title)
@@ -114,7 +114,7 @@ abstract class Page
     /**
      * Set template
      *
-     * @param string $template
+     * @param  string $template
      * @return Page
      */
     public function setTemplate($template)
