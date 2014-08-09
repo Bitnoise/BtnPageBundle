@@ -19,9 +19,8 @@
         "egeloen/ckeditor-bundle": "~2.4.0"
     },
     "autoload": {
-        "psr-0": { "Btn\\PageBundle": "" }
+        "psr-4": { "Btn\\PageBundle\\": "" }
     },
-    "target-dir": "Btn/PageBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "2.0-dev"
