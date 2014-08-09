@@ -47,7 +47,7 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
         if (isset($bundleConf['ckeditor_conf'])) {
             /* url of content with image browser */
             $bundleConf['ckeditor_conf']['config']['filebrowserImageBrowseUrl']
-                = $router->generate('cp_media_list_modal', array('separated' => TRUE));
+                = $router->generate('btn_media_mediacontrol_listmodal', array('separated' => TRUE));
 
             $this->formBuilder->setCkeditor($bundleConf['ckeditor_conf']);
         }

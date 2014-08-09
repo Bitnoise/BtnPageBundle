@@ -29,7 +29,7 @@ class CustomFieldBuilderSubscriber implements EventSubscriberInterface
         if (isset($bundleConf['ckeditor_conf'])) {
             $this->ckeditorConf = $bundleConf['ckeditor_conf'];
             //set ckeditor url
-            $this->ckeditorConf['config']['filebrowserImageBrowseUrl'] = $this->router->generate('cp_media_list_modal', array('separated' => true));
+            $this->ckeditorConf['config']['filebrowserImageBrowseUrl'] = $this->router->generate('btn_media_mediacontrol_listmodal', array('separated' => true));
             $this->ckeditor = true;
         }
     }

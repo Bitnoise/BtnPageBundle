@@ -219,7 +219,7 @@ class PageControlController extends Controller
     private function resolveFormClass($template)
     {
         //get ckeditor url
-        $ckeditor = $this->generateUrl('cp_media_list_modal', array('separated' => true));
+        $ckeditor = $this->generateUrl('btn_media_mediacontrol_listmodal', array('separated' => true));
         if ($template !== null && $template !== '') {
             //get templates config from params
             $templatesConf = $this->get('service_container')->getParameter('btn_pages.templates');
