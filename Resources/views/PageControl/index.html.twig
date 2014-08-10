@@ -9,7 +9,7 @@
             <tr>
                 <th class="btn-control-column-id">{% trans %}page.id{% endtrans %}</th>
                 <th>{% trans %}page.title{% endtrans %}</th>
-                <th>{% trans %}crud.actions{% endtrans %}</th>
+                <th>{% trans %}btn_admin.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +21,7 @@
                     {% if list_config.show_action %}
                         <a href="{{ path('cp_page_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}crud.show{% endtrans %}</a>
                     {% endif %}
-                    <a href="{{ path('cp_page_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}crud.edit{% endtrans %}</a>
+                    <a href="{{ path('cp_page_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}btn_admin.edit{% endtrans %}</a>
                 </td>
             </tr>
         {% endfor %}
