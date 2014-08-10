@@ -1,11 +1,11 @@
 services:
 
-    btn.page.form.page_type:
+    btn_page.form.page_type:
         class:      Btn\PageBundle\Form\PageType
-        arguments:  [@btn.page.form.custom_field_builder_subscriber]
+        arguments:  [@btn_page.form.custom_field_builder_subscriber]
         tags:
             - { name: form.type, alias: btn_pagebundle_pagetype }
 
-    btn.page.form.custom_field_builder_subscriber:
+    btn_page.form.custom_field_builder_subscriber:
         class:      Btn\PageBundle\Form\EventListener\CustomFormFactorySubscriber
         arguments:  ['%btn_pages%', @router, '@doctrine.orm.entity_manager'] #, @form.factory, @doctrine.orm.entity_manager

@@ -8,7 +8,7 @@ use Btn\PageBundle\Form\NodeContentType;
 /**
  *
  */
-class PageContentProvider implements NodeContentProviderInterface
+class NodeContentProvider implements NodeContentProviderInterface
 {
 
     private $router;

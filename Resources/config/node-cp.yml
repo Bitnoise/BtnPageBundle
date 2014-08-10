@@ -1,6 +1,6 @@
 services:
-    btn.page.content_provider:
-        class: Btn\PageBundle\Service\PageContentProvider
+    btn_page.provider.node_content:
+        class: Btn\PageBundle\Provider\NodeContentProvider
         arguments:
             router: '@router'
             em:     '@doctrine.orm.entity_manager'
