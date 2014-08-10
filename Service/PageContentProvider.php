@@ -6,9 +6,8 @@ use Btn\NodesBundle\Service\NodeContentProviderInterface;
 use Btn\PageBundle\Form\NodeContentType;
 
 /**
-*
-*
-*/
+ *
+ */
 class PageContentProvider implements NodeContentProviderInterface
 {
 
@@ -27,8 +26,6 @@ class PageContentProvider implements NodeContentProviderInterface
 
         $data = array();
         foreach ($pages as $page) {
-            //depracated
-            // $data[$this->router->generate('page_show', array('id' => $page->getId()))] = $page->getTitle();
             $data[$page->getId()] = $page->getTitle();
         }
 
