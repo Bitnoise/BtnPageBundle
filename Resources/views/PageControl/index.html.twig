@@ -19,7 +19,7 @@
                 <td>{{ entity.title }}</td>
                 <td>
                     {% if list_config.show_action %}
-                        <a href="{{ path('cp_page_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}crud.show{% endtrans %}</a>
+                        <a href="{{ path('cp_page_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}btn_admin.show{% endtrans %}</a>
                     {% endif %}
                     <a href="{{ path('cp_page_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}btn_admin.edit{% endtrans %}</a>
                 </td>
@@ -30,7 +30,7 @@
 
     {{ knp_pagination_render(pagination) }}
 
-    <a href="{{ path('cp_page_new') }}" class="btn btn-primary">{% trans %}crud.create_new{% endtrans %}</a>
+    <a href="{{ path('cp_page_new') }}" class="btn btn-primary">{% trans %}btn_admin.add{% endtrans %}</a>
 
 {% endblock %}
 

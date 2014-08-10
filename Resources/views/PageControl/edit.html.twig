@@ -11,7 +11,7 @@
             {{ form_widget(edit_form) }}
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-success">{% trans %}crud.save{% endtrans %}</button>
+                    <button type="submit" class="btn btn-success">{% trans %}btn_admin.save{% endtrans %}</button>
                 </div>
             </div>
         </fieldset>
@@ -19,14 +19,14 @@
 
     <form action="{{ path('cp_page_delete', { 'id': entity.id }) }}" method="post">
         {{ form_widget(delete_form) }}
-        <a href="{{ path('cp_page') }}" class="btn btn-default">&laquo; {% trans %}crud.back{% endtrans %}</a>
-        <button type="submit" data-confirmation="true" data-message="{% trans %}crud.confirm.message{% endtrans %}" data-title="{% trans %}crud.confirm.title{% endtrans %}" class="btn btn-danger delete">{% trans %}crud.delete{% endtrans %}</button>
+        <a href="{{ path('cp_page') }}" class="btn btn-default">&laquo; {% trans %}btn_admin.back{% endtrans %}</a>
+        <button type="submit" data-confirmation="true" data-message="{% trans %}crud.confirm.message{% endtrans %}" data-title="{% trans %}crud.confirm.title{% endtrans %}" class="btn btn-danger delete">{% trans %}btn_admin.delete{% endtrans %}</button>
     </form>
 </div>
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ breadcrumb({'cp_page': 'btn_admin.list', 'cp_page_edit': 'crud.breadcrumb.edit'}) }}
+    {{ breadcrumb({'cp_page': 'btn_admin.list', 'cp_page_edit': 'btn_admin.edit'}) }}
 {% endblock %}
 
 {% block javascripts %}
