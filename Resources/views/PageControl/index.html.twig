@@ -18,9 +18,6 @@
                 <td class="btn-control-column-id">{{ entity.id }}</td>
                 <td>{{ entity.title }}</td>
                 <td>
-                    {% if list_config.show_action %}
-                        <a href="{{ path('cp_page_show', { 'id': entity.id }) }}" class="btn btn-primary button-show">{% trans %}btn_admin.show{% endtrans %}</a>
-                    {% endif %}
                     <a href="{{ path('cp_page_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}btn_admin.edit{% endtrans %}</a>
                 </td>
             </tr>
