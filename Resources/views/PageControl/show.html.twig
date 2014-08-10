@@ -1,5 +1,5 @@
-{% from 'BtnCrudBundle::breadcrumb.html.twig' import breadcrumb %}
-{% extends '::control.html.twig' %}
+{% from 'BtnAdminBundle:_macros:breadcrumb.html.twig' import breadcrumb %}
+{% extends 'BtnAdminBundle::base.html.twig' %}
 
 {% block content %}
 
@@ -33,5 +33,5 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ breadcrumb({'cp_page': 'crud.breadcrumb.list', 'cp_page_show': 'crud.breadcrumb.show'}) }}
+    {{ breadcrumb({'cp_page': 'btn_admin.list', 'cp_page_show': 'crud.breadcrumb.show'}) }}
 {% endblock %}

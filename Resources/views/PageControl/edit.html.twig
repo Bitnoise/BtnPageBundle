@@ -1,7 +1,7 @@
-{% from 'BtnCrudBundle::breadcrumb.html.twig' import breadcrumb %}
-{% extends '::control.html.twig' %}
+{% from 'BtnAdminBundle:_macros:breadcrumb.html.twig' import breadcrumb %}
+{% extends 'BtnAdminBundle::base.html.twig' %}
 
-{% form_theme edit_form 'BtnCrudBundle:Form:fields.html.twig' %}
+{% form_theme edit_form 'BtnAdminBundle:Form:fields.html.twig' %}
 
 {% block content %}
 <div id="pageContainer">
@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ breadcrumb({'cp_page': 'crud.breadcrumb.list', 'cp_page_edit': 'crud.breadcrumb.edit'}) }}
+    {{ breadcrumb({'cp_page': 'btn_admin.list', 'cp_page_edit': 'crud.breadcrumb.edit'}) }}
 {% endblock %}
 
 {% block javascripts %}

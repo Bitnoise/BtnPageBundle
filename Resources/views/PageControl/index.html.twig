@@ -1,5 +1,5 @@
-{% from 'BtnCrudBundle::breadcrumb.html.twig' import breadcrumb %}
-{% extends '::control.html.twig' %}
+{% from 'BtnAdminBundle:_macros:breadcrumb.html.twig' import breadcrumb %}
+{% extends 'BtnAdminBundle::base.html.twig' %}
 
 {% block content %}
     <h2>{% trans %}page.list{% endtrans %}</h2>
@@ -35,5 +35,5 @@
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ breadcrumb({'cp_page': 'crud.breadcrumb.list'}) }}
+    {{ breadcrumb({'cp_page': 'btn_admin.list'}) }}
 {% endblock %}
