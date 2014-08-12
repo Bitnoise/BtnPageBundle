@@ -5,15 +5,16 @@ namespace Btn\PageBundle\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * This is the class that loads and manages your bundle configuration
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class BtnPageExtension extends Extension
+class BtnPageExtension extends Extension implements PrependExtensionInterface
 {
+    private $resourceDir = '/../Resources/config';
+
     /**
      * {@inheritDoc}
      */
@@ -22,10 +23,28 @@ class BtnPageExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+        $container->setParameter('btn_page.page.class', $config['page']['class']);
+        $container->setParameter('btn_page.templates', $config['templates']);
 
-        if ($container->hasDefinition('btn_nodes.content_providers')) {
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.$this->resourceDir));
+        $loader->load('services.yml');
+        $loader->load('forms.yml');
+
+        // get ckeditor_conf from config or load default options from ckeditor_conf.yml
+        if (!empty($config['ckeditor_conf'])) {
+            $container->setParameter('btn_page.ckeditor_conf', $config['ckeditor_conf']);
+        } else {
+            $loader->load('ckeditor_conf.yml');
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function prepend(ContainerBuilder $container)
+    {
+        if ($container->hasExtension('btn_nodes')) {
+            $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.$this->resourceDir));
             $loader->load('node-cp.yml');
         }
     }

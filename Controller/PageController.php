@@ -5,7 +5,7 @@ namespace Btn\PageBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Btn\PageBundle\Entity\Page;
+use Btn\PageBundle\Entity\PageInterface;
 
 /**
  * Page controller
@@ -15,47 +15,58 @@ class PageController extends Controller
     /**
      * Finds and displays a one news
      *
-     * @Route("/page/{id}", name="page_show")
+     * @Route("/page/{page}", name="btn_page_page_show", requirements={"page" = "\d+"})
      */
-    public function showAction(Page $page)
+    public function showAction($page)
     {
-        //default
+        if ($page instanceof PageInterface) {
+        } elseif (is_int($page)) {
+            $page = $this->get('btn_page.provider.page')->getRepository()->find($page);
+        } else {
+            throw new \Exception('Invalid input in showAction of PageController');
+        }
+
         $backUrl = null;
-        //resolve back to list url
+
         if ($url = $this->get('session')->get('_btn_slug')) {
 
             $backUrl = $this->generateUrl('_btn_slug', array('url' => $url));
         }
 
         $content        = array();
-        $twigTmplName   = '';
+        $template       = '';
 
         $template = $page->getTemplate();
 
         if (!empty($template)) {
-            $content      = @unserialize($page->getContent());
-            $templateConf = $this->container->getParameter('btn_pages');
-            $twigTmplName = isset($templateConf['templates'][$template]['name']) ? $templateConf['templates'][$template]['name'] : null;
-            $templateConf = isset($templateConf['templates'][$template]['fields']) ? $templateConf['templates'][$template]['fields'] : null;
+            $content   = @unserialize($page->getContent());
+            $templates = $this->container->getParameter('btn_page.templates');
+            $twigTpl   = isset($templates[$template]['template']) ? $templates[$template]['template'] : null;
+            $fields    = isset($templates[$template]['fields']) ? $templates[$template]['fields'] : null;
 
-            if (is_array($content) && $templateConf) {
-                foreach ($content as $name => $value) {
-                    if (isset($templateConf[$name]) && $templateConf[$name]['type'] === 'entity') {
+            if (is_array($content) && $fields) {
+                foreach ($content as $field => $value) {
+                    if (isset($fields[$field]) && $fields[$field]['type'] === 'entity') {
                         $orderBy = null;
-                        if (!empty($templateConf[$name]['query_builder']['orderby'])) {
-                            $orderType = !empty($templateConf[$name]['query_builder']['type']) ?
-                                $templateConf[$name]['query_builder']['type'] : 'ASC';
-                            $orderBy = array($templateConf[$name]['query_builder']['orderby'] => $orderType);
+                        if (!empty($fields[$field]['query_builder']['orderby'])) {
+                            $orderType = !empty($fields[$field]['query_builder']['type']) ?
+                                $fields[$field]['query_builder']['type'] : 'ASC';
+                            $orderBy = array($fields[$field]['query_builder']['orderby'] => $orderType);
                         }
-                        $content[$name] =
+                        $content[$field] =
                             $this->getDoctrine()
                                  ->getManager()
-                                 ->getRepository($templateConf[$name]['class'])->findById($value, $orderBy);
+                                 ->getRepository($fields[$name]['class'])->findById($value, $orderBy);
                     }
                 }
             }
         }
 
-        return array('page' => $page, 'backUrl' => $backUrl, 'content' => $content, 'tmplName' => $twigTmplName);
+        return $this->render($twigTpl, array(
+            'page' => $page,
+            'backUrl' => $backUrl,
+            'content' => $content,
+            'template' => $template,
+        ));
     }
 }

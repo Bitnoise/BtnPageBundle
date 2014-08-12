@@ -1,0 +1,30 @@
+parameters:
+    btn_page.form.event_listener.page_form_factory.class: Btn\PageBundle\Form\EventListener\PageFormFactorySubscriber
+    btn_page.form.type.page.class: Btn\PageBundle\Form\Type\PageType
+    btn_page.form.page.class: Btn\PageBundle\Form\PageForm
+
+services:
+    btn_page.form.event_listener.page_form_factory:
+        class: %btn_page.form.event_listener.page_form_factory.class%
+        arguments:
+            bundleConf:
+                templates: %btn_page.templates%
+                ckeditor_conf: %btn_page.ckeditor_conf%
+            router: @router
+            em: @doctrine.orm.entity_manager
+
+    btn_page.form.type.page:
+        class: %btn_page.form.type.page.class%
+        calls:
+            - [setClass, [%btn_page.page.class%]]
+        tags:
+            - { name: form.type, alias: btn_page }
+
+    btn_page.form.page:
+        class: %btn_page.form.page.class%
+        arguments:
+            customFormFactorySubscriber: @btn_page.form.event_listener.page_form_factory
+        calls:
+            - [setClass, [%btn_page.page.class%]]
+        tags:
+            - { name: form.type, alias: btn_page_form_page }

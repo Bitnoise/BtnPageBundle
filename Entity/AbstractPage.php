@@ -1,13 +1,13 @@
 <?php
 
-namespace Btn\PageBundle\Model;
+namespace Btn\PageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Abstract Page class
+ * @ORM\MappedSuperclass()
  */
-abstract class Page
+abstract class AbstractPage implements PageInterface
 {
     /**
      * Unique id of the page
@@ -27,7 +27,7 @@ abstract class Page
      *
      * @ORM\Column(name="title", type="string", length=255)
      */
-    protected $title = 'title';
+    protected $title;
 
     /**
      * Page content
@@ -36,7 +36,7 @@ abstract class Page
      *
      * @ORM\Column(name="content", type="text")
      */
-    protected $content = 'content';
+    protected $content;
 
     /**
      * Page content
@@ -52,7 +52,6 @@ abstract class Page
      */
     public function __construct()
     {
-
     }
 
     /**

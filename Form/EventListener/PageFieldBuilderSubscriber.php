@@ -4,19 +4,20 @@ namespace Btn\PageBundle\Form\EventListener;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class CustomFieldBuilderSubscriber implements EventSubscriberInterface
+class PageFieldBuilderSubscriber implements EventSubscriberInterface
 {
-    private $ckeditor      = false;
-    private $ckeditorConf  = array();
-    private $templates     = array();
-    private $templatesConf = array();
+    protected $ckeditor      = false;
+    protected $ckeditorConf  = array();
+    protected $templates     = array();
+    protected $templatesConf = array();
 
     /**
      * @param array  $bundleConf
      * @param router $router
      */
-    public function __construct($bundleConf = array(), $router)
+    public function __construct($bundleConf = array(), UrlGeneratorInterface $router)
     {
         if (empty($bundleConf) || !is_array($bundleConf)) {
             throw new \Exception("BtnPageBundle configuration is missing!");

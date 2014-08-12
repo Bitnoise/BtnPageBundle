@@ -4,8 +4,9 @@ namespace Btn\PageBundle\Form\EventListener;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class CustomFormFactorySubscriber implements EventSubscriberInterface
+class PageFormFactorySubscriber implements EventSubscriberInterface
 {
     /**
      * default template name
@@ -20,7 +21,7 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
 
     /**
      * $builder
-     * @var CustomFormBuilder
+     * @var PageFormBuilder
      */
     private $formBuilder;
 
@@ -28,7 +29,7 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
      * @param array  $bundleConf
      * @param router $router
      */
-    public function __construct($bundleConf = array(), $router, $em)
+    public function __construct($bundleConf = array(), UrlGeneratorInterface $router, $em)
     {
         if (!is_array($bundleConf)) {
             throw new \Exception("Bundle configuration should be an array!");
@@ -41,7 +42,7 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
         $this->templates     = $this->getSimpleArrayTemplates();
 
         /* create custom form builder for this factory */
-        $this->formBuilder  = new CustomFormBuilder($this->templates, $em);
+        $this->formBuilder  = new PageFormBuilder($this->templates, $em);
 
         /* prepare ckeditor config */
         if (isset($bundleConf['ckeditor_conf'])) {
@@ -72,8 +73,6 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
 
     /**
      * checkTemplates check if template configs are declared and template isn't default one
-     * @param  [type] $template
-     * @return [type]
      */
     private function checkTemplates($template)
     {
@@ -83,12 +82,15 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
             isset($this->templatesConf[$template]);
     }
 
+    /**
+     *
+     */
     public function preSetData(FormEvent $event)
     {
         $this->formBuilder->setForm($event->getForm());
 
         /* add template select field */
-        if (!empty($this->templates)) {
+        if (!empty($this->templates) && !$event->getData()->getId()) {
             $this->formBuilder->setTemplateSelect($this->templates);
         }
 
@@ -127,6 +129,7 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
 
     /**
      * preSubmit serialize data from custom fields to the content field
+     *
      * @param  FormEvent $event
      * @return void
      */
@@ -148,6 +151,7 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
 
     /**
      * postBind
+     *
      * @param  FormEvent $event
      * @return array
      */
@@ -160,6 +164,7 @@ class CustomFormFactorySubscriber implements EventSubscriberInterface
 
     /**
      * getSimpleArrayTemplates prepare simple array for templates select field
+     *
      * @param  array $templatesConf
      * @return array
      */

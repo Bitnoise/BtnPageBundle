@@ -7,8 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class NodeContentType extends AbstractType
 {
-
-    private $data;
+    protected $data;
 
     public function __construct($data = array())
     {

@@ -5,7 +5,7 @@ use Symfony\Component\Form\Form;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 
-class CustomFormBuilder
+class PageFormBuilder
 {
     /**
      * $templatesConf array of objects with templates configuration
@@ -94,11 +94,11 @@ class CustomFormBuilder
     public function setTemplateSelect($templates)
     {
         $this->form->add('template', 'choice', array(
-            'label'     => 'page.template',
+            'label'     => 'btn_page.template',
             'choices'   => $templates,
             'attr'      => array('class' => 'on-template-change'),
             'mapped'    => TRUE,
-            'empty_value' => 'page.template_empty_value'
+            'empty_value' => 'btn_page.template_empty_value'
         ));
     }
 

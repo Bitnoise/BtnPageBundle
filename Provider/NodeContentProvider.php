@@ -1,28 +1,30 @@
 <?php
 
-namespace Btn\PageBundle\Service;
+namespace Btn\PageBundle\Provider;
 
-use Btn\NodesBundle\Service\NodeContentProviderInterface;
+use Btn\NodesBundle\Provider\NodeContentProviderInterface;
 use Btn\PageBundle\Form\NodeContentType;
+use Btn\AdminBundle\Provider\EntityProviderInterface;
 
-/**
- *
- */
 class NodeContentProvider implements NodeContentProviderInterface
 {
+    /** @var \Btn\AdminBundle\Provider\EntityProviderInterface $entityProvider */
+    protected $entityProvider;
 
-    private $router;
-    private $em;
-
-    public function __construct($router, $em)
+    /**
+     *
+     */
+    public function __construct(EntityProviderInterface $entityProvider)
     {
-        $this->router = $router;
-        $this->em     = $em;
+        $this->entityProvider = $entityProvider;
     }
 
+    /**
+     *
+     */
     public function getForm()
     {
-        $pages = $this->em->getRepository('BtnPageBundle:Page')->findAll();
+        $pages = $this->entityProvider->getRepository()->findAll();
 
         $data = array();
         foreach ($pages as $page) {
@@ -32,23 +34,43 @@ class NodeContentProvider implements NodeContentProviderInterface
         return new NodeContentType($data);
     }
 
+    /**
+     *
+     */
     public function resolveRoute($formData = array())
     {
-        return 'page_show';
+        return 'btn_page_page_show';
     }
 
+    /**
+     *
+     */
     public function resolveRouteParameters($formData = array())
     {
         return array('id' => $formData['page']);
     }
 
+    /**
+     *
+     */
     public function resolveControlRoute($formData = array())
     {
-        return 'cp_page_edit';
+        return 'btn_page_pagecontrol_edit';
     }
 
+    /**
+     *
+     */
     public function resolveControlRouteParameters($formData = array())
     {
         return array('id' => $formData['page']);
+    }
+
+    /**
+     *
+     */
+    public function getName()
+    {
+        return 'btn_page.node_content_provider';
     }
 }

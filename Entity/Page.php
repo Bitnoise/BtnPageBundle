@@ -2,15 +2,12 @@
 
 namespace Btn\PageBundle\Entity;
 
-use Btn\PageBundle\Model\Page as BasePage;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Page class
- *
- * @ORM\Table(name="page")
+ * @ORM\Table(name="btn_page")
  * @ORM\Entity
  */
-class Page extends BasePage
+class Page extends AbstractPage
 {
 }

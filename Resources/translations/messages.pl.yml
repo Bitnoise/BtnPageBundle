@@ -1,10 +1,9 @@
-page:
-    id: Id
-    list: Lista stron
-    title: Tytuł
-    create: Dodaj stronę
-    content: Zawartość
-    edit: Edycja strony
-    show: Zawartość strony
-    template: Szablon
-    template_empty_value: Wybierz szablon...
+btn_page.id: Id
+btn_page.list: Lista stron
+btn_page.title: Tytuł
+btn_page.create: Dodaj stronę
+btn_page.content: Zawartość
+btn_page.edit: Edycja strony
+btn_page.show: Zawartość strony
+btn_page.template: Szablon
+btn_page.template_empty_value: Wybierz szablon...

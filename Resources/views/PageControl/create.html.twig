@@ -1,0 +1,29 @@
+{% from 'BtnAdminBundle:Macros:breadcrumb.html.twig' import breadcrumb %}
+{% import 'BtnAdminBundle:Macros:link.html.twig' as lnk %}
+{% extends 'BtnAdminBundle::base.html.twig' %}
+
+{% block content %}
+
+    <form action="{{ form.vars.action }}" method="post" {{ form_enctype(form) }} class="well form-horizontal" novalidate>
+          <fieldset>
+              <legend>{% trans %}btn_page.create{% endtrans %}</legend>
+              {{ form_widget(form) }}
+        </fieldset>
+    {{ form_end(form) }}
+
+    {{ lnk.back('btn_page_pagecontrol_index') }}
+
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ breadcrumb({'btn_page_pagecontrol_index': 'btn_admin.list', 'btn_page_pagecontrol_new': 'btn_admin.new'}) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '@BtnPageBundle/Resources/public/js/page.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

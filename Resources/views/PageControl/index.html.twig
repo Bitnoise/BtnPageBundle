@@ -1,36 +1,44 @@
 {% from 'BtnAdminBundle:Macros:breadcrumb.html.twig' import breadcrumb %}
-{% extends 'BtnAdminBundle::base.html.twig' %}
+{% from 'BtnAdminBundle:Macros:icon.html.twig' import glyphicon as gi %}
+{% import 'BtnAdminBundle:Macros:link.html.twig' as lnk %}
+{% import 'BtnAdminBundle:Macros:list.html.twig' as lst %}
+{% extends 'BtnAdminBundle::list.html.twig' %}
 
-{% block content %}
-    <h2>{% trans %}page.list{% endtrans %}</h2>
+{% block breadcrumb %}
+    {{ breadcrumb({'btn_news_newscontrol_index': 'btn_admin.list'}) }}
+{% endblock %}
 
-    <table class="table table-striped table-bordered table-condensed">
+{% block list_header %}
+    {{ lst.header('btn_page.list') }}
+{% endblock %}
+
+{% block list_table %}
+    <table class="{{ lst.table_class() }}">
         <thead>
             <tr>
-                <th class="btn-control-column-id">{% trans %}page.id{% endtrans %}</th>
-                <th>{% trans %}page.title{% endtrans %}</th>
-                <th>{% trans %}btn_admin.actions{% endtrans %}</th>
+                <th class="{{ lst.col_id_class() }}">{% trans %}btn_page.id{% endtrans %}</th>
+                <th>{% trans %}btn_page.title{% endtrans %}</th>
+                <th class="{{ lst.col_act_class }}">{% trans %}btn_admin.actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in pagination %}
             <tr>
-                <td class="btn-control-column-id">{{ entity.id }}</td>
+                <td class="{{ lst.col_id_class() }}">{{ entity.id }}</td>
                 <td>{{ entity.title }}</td>
-                <td>
-                    <a href="{{ path('cp_page_edit', { 'id': entity.id }) }}" class="btn btn-primary button-edit">{% trans %}btn_admin.edit{% endtrans %}</a>
+                <td class="{{ lst.col_act_class }}">
+                    {{ lnk.edit('btn_page_pagecontrol_edit', {id: entity.id }) }}
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    {{ knp_pagination_render(pagination) }}
-
-    <a href="{{ path('cp_page_new') }}" class="btn btn-primary">{% trans %}btn_admin.add{% endtrans %}</a>
-
 {% endblock %}
 
-{% block breadcrumb %}
-    {{ breadcrumb({'cp_page': 'btn_admin.list'}) }}
+{% block list_pagination %}
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}
+
+{% block list_buttons %}
+    {{ lnk.add('btn_page_pagecontrol_new') }}
 {% endblock %}
