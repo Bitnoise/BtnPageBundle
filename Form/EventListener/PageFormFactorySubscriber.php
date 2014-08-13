@@ -141,9 +141,10 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
         //get page entity
         $page = $event->getForm()->getData();
 
-        if (isset($data['template']) && $data['template'] !== 'show') {
+        if (is_array($data)) {
             unset($data['title']);
             unset($data['template']);
+            unset($data['save']);
 
             $page->setContent(serialize($data));
         }
@@ -175,7 +176,7 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
 
         if (!empty($this->templatesConf)) {
             foreach ($this->templatesConf as $key => $value) {
-                $templates[$key] = $value['name'];
+                $templates[$key] = !empty($value['title']) ? $value['title'] : $value['template'];
             }
         }
 
