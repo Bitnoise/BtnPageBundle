@@ -2,7 +2,7 @@
 
 namespace Btn\PageBundle\Provider;
 
-use Btn\NodesBundle\Provider\NodeContentProviderInterface;
+use Btn\NodeBundle\Provider\NodeContentProviderInterface;
 use Btn\PageBundle\Form\NodeContentType;
 use Btn\BaseBundle\Provider\EntityProviderInterface;
 
