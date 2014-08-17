@@ -1,5 +1,5 @@
 services:
     btn_page.provider.page:
-        class: %btn_admin.provider.entity.class%
-        parent: btn_admin.provider.abstract_entity
+        class: %btn_base.provider.entity.class%
+        parent: btn_base.provider.abstract_entity
         arguments: ['%btn_page.page.class%']

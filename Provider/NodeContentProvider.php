@@ -4,11 +4,11 @@ namespace Btn\PageBundle\Provider;
 
 use Btn\NodesBundle\Provider\NodeContentProviderInterface;
 use Btn\PageBundle\Form\NodeContentType;
-use Btn\AdminBundle\Provider\EntityProviderInterface;
+use Btn\BaseBundle\Provider\EntityProviderInterface;
 
 class NodeContentProvider implements NodeContentProviderInterface
 {
-    /** @var \Btn\AdminBundle\Provider\EntityProviderInterface $entityProvider */
+    /** @var \Btn\BaseBundle\Provider\EntityProviderInterface $entityProvider */
     protected $entityProvider;
 
     /**
