@@ -2,7 +2,7 @@
 
 namespace Btn\PageBundle\DependencyInjection;
 
-use Btn\AdminBundle\DependencyInjection\AbstractExtension;
+use Btn\BaseBundle\DependencyInjection\AbstractExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class BtnPageExtension extends AbstractExtension
@@ -23,6 +23,7 @@ class BtnPageExtension extends AbstractExtension
         if (!empty($config['ckeditor_conf'])) {
             $container->setParameter('btn_page.ckeditor_conf', $config['ckeditor_conf']);
         } else {
+            $loader = $this->getConfigLoader($container);
             $loader->load('ckeditor_conf.yml');
         }
     }
