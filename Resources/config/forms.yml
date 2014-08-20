@@ -1,7 +1,7 @@
 parameters:
     btn_page.form.event_listener.page_form_factory.class: Btn\PageBundle\Form\EventListener\PageFormFactorySubscriber
     btn_page.form.type.page.class: Btn\PageBundle\Form\Type\PageType
-    btn_page.form.page.class: Btn\PageBundle\Form\PageForm
+    btn_page.form.page_control.class: Btn\PageBundle\Form\PageControlForm
 
 services:
     btn_page.form.event_listener.page_form_factory:
@@ -20,11 +20,11 @@ services:
         tags:
             - { name: form.type, alias: btn_page }
 
-    btn_page.form.page:
-        class: %btn_page.form.page.class%
-        arguments:
-            customFormFactorySubscriber: @btn_page.form.event_listener.page_form_factory
+    btn_page.form.page_control:
+        parent: btn_admin.form.abstract
+        class: %btn_page.form.page_control.class%
         calls:
+            - [setPageFormFactorySubscriber, [@btn_page.form.event_listener.page_form_factory]]
             - [setClass, [%btn_page.page.class%]]
         tags:
-            - { name: form.type, alias: btn_page_form_page }
+            - { name: form.type, alias: btn_page_form_page_control }

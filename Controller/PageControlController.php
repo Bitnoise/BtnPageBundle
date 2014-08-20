@@ -46,7 +46,7 @@ class PageControlController extends AbstractControlController
     {
         $entity = $this->getEntityProvider()->create();
 
-        $form = $this->createForm('btn_page_form_page', $entity, array(
+        $form = $this->createForm('btn_page_form_page_control', $entity, array(
             'action' => $this->generateUrl('btn_page_pagecontrol_create'),
         ));
 
@@ -71,9 +71,9 @@ class PageControlController extends AbstractControlController
     {
         $entity = $this->findEntityOr404($this->getEntityProvider()->getClass(), $id);
 
-        $editForm   = $this->createForm('btn_page_form_page', $entity);
+        $editForm   = $this->createForm('btn_page_form_page_control', $entity);
 
-        $form = $this->createForm('btn_page_form_page', $entity, array(
+        $form = $this->createForm('btn_page_form_page_control', $entity, array(
             'action' => $this->generateUrl('btn_page_pagecontrol_update', array('id' => $id)),
         ));
 

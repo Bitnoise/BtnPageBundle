@@ -6,7 +6,7 @@ use Btn\AdminBundle\Form\AbstractForm;
 use Symfony\Component\Form\FormBuilderInterface;
 use Btn\PageBundle\Form\EventListener\PageFormFactorySubscriber;
 
-class PageForm extends AbstractForm
+class PageControlForm extends AbstractForm
 {
     /** @var \Btn\PageBundle\Form\EventListener\PageFormFactorySubscriber */
     protected $pageFormFactorySubscriber;
@@ -14,30 +14,26 @@ class PageForm extends AbstractForm
     /**
      *
      */
-    public function __construct(PageFormFactorySubscriber $pageFormFactorySubscriber)
+    public function setPageFormFactorySubscriber(PageFormFactorySubscriber $pageFormFactorySubscriber)
     {
         $this->pageFormFactorySubscriber = $pageFormFactorySubscriber;
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
-
         $builder->addEventSubscriber($this->pageFormFactorySubscriber);
 
-        $builder
-            ->add('save', $options['data']->getId() ? 'btn_save' : 'btn_create')
-        ;
+        parent::buildForm($builder, $options);
     }
 
     /**
-     *
+     * {@inheritdoc}
      */
     public function getName()
     {
-        return 'btn_page_form_page';
+        return 'btn_page_form_page_control';
     }
 }
