@@ -22,6 +22,14 @@ class NodeContentProvider implements NodeContentProviderInterface
     /**
      *
      */
+    public function isEnabled()
+    {
+        return true;
+    }
+
+    /**
+     *
+     */
     public function getForm()
     {
         $pages = $this->entityProvider->getRepository()->findAll();
