@@ -6,6 +6,7 @@
     "homepage": "https://github.com/Bitnoise/BtnPageBundle",
     "license": "MIT",
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "Bitnoise Team",
@@ -18,10 +19,15 @@
         "gedmo/doctrine-extensions": "*",
         "egeloen/ckeditor-bundle": "~2.4.0"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://bitnoise.github.io/packages/"
+        }
+    ],
     "autoload": {
-        "psr-0": { "Btn\\PageBundle": "" }
+        "psr-0": { "Btn\\PageBundle\\": "src/" }
     },
-    "target-dir": "Btn/PageBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "2.0-dev"
