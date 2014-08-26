@@ -16,7 +16,7 @@
     ],
     "require": {
         "bitnoise/admin-bundle": "2.0.*",
-        "gedmo/doctrine-extensions": "*",
+        "gedmo/doctrine-extensions": "*"
     },
     "repositories": [
         {
