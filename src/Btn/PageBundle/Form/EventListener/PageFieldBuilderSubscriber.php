@@ -8,8 +8,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class PageFieldBuilderSubscriber implements EventSubscriberInterface
 {
-    protected $ckeditor      = false;
-    protected $ckeditorConf  = array();
     protected $templates     = array();
     protected $templatesConf = array();
 
@@ -17,22 +15,12 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
      * @param array  $bundleConf
      * @param router $router
      */
-    public function __construct($bundleConf = array(), UrlGeneratorInterface $router)
+    public function __construct(array $templatesConf = array(), UrlGeneratorInterface $router)
     {
-        if (empty($bundleConf) || !is_array($bundleConf)) {
-            throw new \Exception("BtnPageBundle configuration is missing!");
-        }
-        $this->templatesConf = isset($bundleConf['templates']) ? $bundleConf['templates'] : array();
+        $this->templatesConf = $templatesConf;
         $this->router        = $router;
         //prepare simple array for templates select field
         $this->templates = $this->getSimpleArrayTemplates($this->templatesConf);
-        //prepare ckeditor config
-        if (isset($bundleConf['ckeditor_conf'])) {
-            $this->ckeditorConf = $bundleConf['ckeditor_conf'];
-            //set ckeditor url
-            $this->ckeditorConf['config']['filebrowserImageBrowseUrl'] = $this->router->generate('btn_media_mediacontrol_listmodal', array('separated' => true));
-            $this->ckeditor = true;
-        }
     }
 
     public static function getSubscribedEvents()
@@ -80,11 +68,6 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
                             $params['data'] = $content[$fieldName];
                         }
                         $type = $params['type'];
-                        if ($type === 'ckeditor' && $this->ckeditor) {
-                            $params = array_merge($params, $this->ckeditorConf);
-                        } elseif (!$this->ckeditor) {
-                            $type = 'textarea';
-                        }
                         //unset type key to avoid field creation error
                         unset($params['type']);
                         //add custom field to the form
@@ -97,7 +80,7 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
                 }
             } else {
                 //render default form
-                $form->add('content', 'ckeditor', $this->ckeditorConf);
+                $form->add('content', 'ckeditor');
             }
         }
     }

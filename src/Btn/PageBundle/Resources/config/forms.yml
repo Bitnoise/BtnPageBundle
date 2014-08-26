@@ -7,9 +7,7 @@ services:
     btn_page.form.event_listener.page_form_factory:
         class: %btn_page.form.event_listener.page_form_factory.class%
         arguments:
-            bundleConf:
-                templates: %btn_page.templates%
-                ckeditor_conf: %btn_page.ckeditor_conf%
+            templatesConf: %btn_page.templates%
             router: @router
             em: @doctrine.orm.entity_manager
 

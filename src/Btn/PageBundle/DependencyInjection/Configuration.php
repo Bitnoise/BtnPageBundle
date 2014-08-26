@@ -69,7 +69,6 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-                ->variableNode('ckeditor_conf')->end()
             ->end()
         ->end()
         ;

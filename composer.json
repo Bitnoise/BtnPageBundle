@@ -17,7 +17,6 @@
     "require": {
         "bitnoise/admin-bundle": "2.0.*",
         "gedmo/doctrine-extensions": "*",
-        "egeloen/ckeditor-bundle": "~2.4.0"
     },
     "repositories": [
         {
