@@ -80,7 +80,7 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
                 }
             } else {
                 //render default form
-                $form->add('content', 'ckeditor');
+                $form->add('content', 'btn_wysiwyg');
             }
         }
     }
