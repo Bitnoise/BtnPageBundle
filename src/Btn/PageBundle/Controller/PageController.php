@@ -28,9 +28,9 @@ class PageController extends Controller
 
         $backUrl = null;
 
-        if ($url = $this->get('session')->get('_btn_slug')) {
+        if ($url = $this->get('session')->get('_btn_node')) {
 
-            $backUrl = $this->generateUrl('_btn_slug', array('url' => $url));
+            $backUrl = $this->generateUrl('_btn_node', array('url' => $url));
         }
 
         $content        = array();
