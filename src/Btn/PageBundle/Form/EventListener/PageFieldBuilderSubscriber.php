@@ -13,12 +13,10 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
 
     /**
      * @param array  $bundleConf
-     * @param router $router
      */
-    public function __construct(array $templatesConf = array(), UrlGeneratorInterface $router)
+    public function __construct(array $templatesConf = array())
     {
         $this->templatesConf = $templatesConf;
-        $this->router        = $router;
         //prepare simple array for templates select field
         $this->templates = $this->getSimpleArrayTemplates($this->templatesConf);
     }

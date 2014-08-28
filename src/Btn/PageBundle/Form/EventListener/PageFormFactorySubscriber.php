@@ -17,41 +17,24 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
      * $templates key value list of templates
      * @var array
      */
-    private $templates     = array();
+    private $templates = array();
 
-    /**
-     * $builder
-     * @var PageFormBuilder
-     */
-    private $formBuilder;
+    private $templatesConf;
 
     /**
      * @param array  $bundleConf
      * @param router $router
      */
-    public function __construct($bundleConf = array(), UrlGeneratorInterface $router, $em)
+    public function __construct(array $templatesConf = array(), UrlGeneratorInterface $router, $em)
     {
-        if (!is_array($bundleConf)) {
-            throw new \Exception("Bundle configuration should be an array!");
-        }
-
         /* set templates config */
-        $this->templatesConf = isset($bundleConf['templates']) ? $bundleConf['templates'] : array();
+        $this->templatesConf = $templatesConf;
 
         /* and simplified key => value version for Symfony2 select purpose */
         $this->templates     = $this->getSimpleArrayTemplates();
 
         /* create custom form builder for this factory */
-        $this->formBuilder  = new PageFormBuilder($this->templates, $em);
-
-        /* prepare ckeditor config */
-        if (isset($bundleConf['ckeditor_conf'])) {
-            /* url of content with image browser */
-            $bundleConf['ckeditor_conf']['config']['filebrowserImageBrowseUrl']
-                = $router->generate('btn_media_mediacontrol_modal');
-
-            $this->formBuilder->setCkeditor($bundleConf['ckeditor_conf']);
-        }
+        $this->formBuilder   = new PageFormBuilder($this->templates, $em);
     }
 
     /**

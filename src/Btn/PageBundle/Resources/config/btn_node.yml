@@ -1,8 +1,10 @@
 parameters:
-    btn_page.provider.node_content.class: Btn\PageBundle\Provider\NodeContentProvider
+    btn_page.provider.page_node_content.class: Btn\PageBundle\Provider\PageNodeContentProvider
 
 services:
-    btn_page.provider.node_content:
-        class: %btn_page.provider.node_content.class%
+    btn_page.provider.page_node_content:
+        class: %btn_page.provider.page_node_content.class%
         arguments:
             entityProvider: '@btn_page.provider.page'
+        tags:
+            - { name: btn_node.content_provider }

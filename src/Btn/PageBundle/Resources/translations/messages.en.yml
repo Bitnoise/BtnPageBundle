@@ -7,3 +7,5 @@ btn_page.edit: Page edit
 btn_page.show: Page show
 btn_page.template: Template
 btn_page.template_empty_value: Choose template...
+
+btn_page.page_node_content_provider.name: Page provider

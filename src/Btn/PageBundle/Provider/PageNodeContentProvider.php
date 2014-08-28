@@ -6,7 +6,7 @@ use Btn\NodeBundle\Provider\NodeContentProviderInterface;
 use Btn\PageBundle\Form\NodeContentType;
 use Btn\BaseBundle\Provider\EntityProviderInterface;
 
-class NodeContentProvider implements NodeContentProviderInterface
+class PageNodeContentProvider implements NodeContentProviderInterface
 {
     /** @var \Btn\BaseBundle\Provider\EntityProviderInterface $entityProvider */
     protected $entityProvider;
@@ -47,7 +47,7 @@ class NodeContentProvider implements NodeContentProviderInterface
      */
     public function resolveRoute($formData = array())
     {
-        return 'btn_page_page_show';
+        return isset($formData['page']) ? 'btn_page_page_show' : null;
     }
 
     /**
@@ -55,7 +55,7 @@ class NodeContentProvider implements NodeContentProviderInterface
      */
     public function resolveRouteParameters($formData = array())
     {
-        return array('id' => $formData['page']);
+        return isset($formData['page']) ? array('id' => $formData['page']) : array();
     }
 
     /**
@@ -63,7 +63,7 @@ class NodeContentProvider implements NodeContentProviderInterface
      */
     public function resolveControlRoute($formData = array())
     {
-        return 'btn_page_pagecontrol_edit';
+        return isset($formData['page']) ? 'btn_page_pagecontrol_edit' : null;
     }
 
     /**
@@ -71,7 +71,7 @@ class NodeContentProvider implements NodeContentProviderInterface
      */
     public function resolveControlRouteParameters($formData = array())
     {
-        return array('id' => $formData['page']);
+        return isset($formData['page']) ? array('id' => $formData['page']) : array();
     }
 
     /**
@@ -79,6 +79,6 @@ class NodeContentProvider implements NodeContentProviderInterface
      */
     public function getName()
     {
-        return 'btn_page.node_content_provider';
+        return 'btn_page.page_node_content_provider.name';
     }
 }

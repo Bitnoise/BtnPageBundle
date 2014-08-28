@@ -20,18 +20,6 @@ class PageFormBuilder
     private $form = null;
 
     /**
-     * $ckeditor flag to determine we should use CKEditor or not
-     * @var boolean
-     */
-    private $ckeditor = false;
-
-    /**
-     * $ckeditorConf description
-     * @var array
-     */
-    private $ckeditorConf  = array();
-
-    /**
      * $content content of extra fields
      * @var array
      */
@@ -51,20 +39,6 @@ class PageFormBuilder
     public function setContent($content)
     {
         $this->content = @unserialize($content);
-    }
-
-    /**
-     * setCkeditor set CKEditor config and flag
-     * @param array $config
-     */
-    public function setCkeditor($config = null)
-    {
-        if (!is_array($config)) {
-            throw new Exception("CKEditor config should be an array.", 1);
-        }
-
-        $this->ckeditor     = true;
-        $this->ckeditorConf = $config;
     }
 
     /**
@@ -97,7 +71,7 @@ class PageFormBuilder
             'label'     => 'btn_page.template',
             'choices'   => $templates,
             'attr'      => array('class' => 'on-template-change'),
-            'mapped'    => TRUE,
+            'mapped'    => true,
             'empty_value' => 'btn_page.template_empty_value'
         ));
     }
@@ -110,15 +84,6 @@ class PageFormBuilder
     private function processParams(&$type, &$params)
     {
         switch ($type) {
-            case 'ckeditor':
-                if ($this->ckeditor) {
-                    $params = array_merge($params, $this->ckeditorConf);
-                } else {
-                    $type = 'textarea';
-                }
-
-                break;
-
             case 'entity':
                 $params['query_builder'] = $this->getSelectQueryFunction($params);
                 break;
@@ -200,14 +165,10 @@ class PageFormBuilder
     }
 
     /**
-     * addDefault add default CKE Editor as content field
+     * addDefault add default BtnWysiwyg as content field
      */
     public function addDefault($clearContent = false)
     {
-        if ($clearContent) {
-            $this->ckeditorConf['data'] = '';
-        }
-
-        $this->form->add('content', 'ckeditor', $this->ckeditorConf);
+        $this->form->add('content', 'btn_wysiwyg', $clearContent ? array('data' => '') : array());
     }
 }

@@ -15,21 +15,21 @@ class PageController extends Controller
     /**
      * Finds and displays a one news
      *
-     * @Route("/page/{page}", name="btn_page_page_show", requirements={"page" = "\d+"})
+     * @Route("/_page/{id}", name="btn_page_page_show", requirements={"id" = "\d+"})
      */
-    public function showAction($page)
+    public function showAction($id)
     {
-        if ($page instanceof PageInterface) {
-        } elseif (is_int($page)) {
-            $page = $this->get('btn_page.provider.page')->getRepository()->find($page);
+        if ($id instanceof PageInterface) {
+            $page = $id;
+        } elseif (is_numeric($id)) {
+            $page = $this->get('btn_page.provider.page')->getRepository()->find($id);
         } else {
-            throw new \Exception('Invalid input in showAction of PageController');
+            throw new \Exception(sprintf('Invalid input in showAction of "%s"', __CLASS__));
         }
 
         $backUrl = null;
 
         if ($url = $this->get('session')->get('_btn_node')) {
-
             $backUrl = $this->generateUrl('_btn_node', array('url' => $url));
         }
 
