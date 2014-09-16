@@ -52,7 +52,7 @@ class Configuration implements ConfigurationInterface
                                 ->requiresAtLeastOneElement()
                                 ->prototype('array')
                                     ->children()
-                                        ->scalarNode('type')->defaultValue('ckeditor')->cannotBeEmpty()->example('text')->end()
+                                        ->scalarNode('type')->defaultValue('btn_wysiwyg')->cannotBeEmpty()->example('text')->end()
                                         ->scalarNode('label')->defaultValue(null)->end()
                                         ->booleanNode('mapped')->defaultValue(false)->end()
                                         ->variableNode('attr')->end()

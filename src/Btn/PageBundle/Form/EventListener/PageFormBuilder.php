@@ -26,16 +26,17 @@ class PageFormBuilder
     private $content;
 
     /**
-     * __construct
-     * @param array $templates
-     * @param array $ckeditorConf
+     *
      */
-    public function __construct($templates, $em, $ckeditorConf = null)
+    public function __construct($templates, $em)
     {
-        $this->em = $em;
+        $this->em        = $em;
         $this->templates = $templates;
     }
 
+    /**
+     *
+     */
     public function setContent($content)
     {
         $this->content = @unserialize($content);
