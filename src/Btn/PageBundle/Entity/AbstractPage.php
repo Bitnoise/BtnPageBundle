@@ -3,6 +3,7 @@
 namespace Btn\PageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\MappedSuperclass()
@@ -26,6 +27,7 @@ abstract class AbstractPage implements PageInterface
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
      */
     protected $title;
 
@@ -35,6 +37,7 @@ abstract class AbstractPage implements PageInterface
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank()
      */
     protected $content;
 

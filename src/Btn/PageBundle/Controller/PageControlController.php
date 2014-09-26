@@ -97,7 +97,7 @@ class PageControlController extends AbstractControlController
         $this->validateCsrfTokenOrThrowException('btn_page_pagecontrol_delete', $csrf_token);
 
         $entityProvider = $this->getEntityProvider();
-        $entity         = $this->findEntityOr404($id, $entityProvider->getClass());
+        $entity         = $this->findEntityOr404($entityProvider->getClass(), $id);
 
         $entityProvider->delete($entity);
 
