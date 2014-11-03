@@ -2,6 +2,7 @@
 
 namespace Btn\PageBundle\Controller;
 
+use Symfony\Component\HttpFoundation\request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -17,7 +18,7 @@ class PageController extends Controller
      *
      * @Route("/_page/{id}", name="btn_page_page_show", requirements={"id" = "\d+"})
      */
-    public function showAction($id)
+    public function showAction(Request $request, $id)
     {
         if ($id instanceof PageInterface) {
             $page = $id;
