@@ -47,17 +47,26 @@ class PageController extends Controller
 
             if (is_array($content) && $fields) {
                 foreach ($content as $field => $value) {
-                    if (isset($fields[$field]) && $fields[$field]['type'] === 'entity') {
-                        $orderBy = null;
-                        if (!empty($fields[$field]['query_builder']['orderby'])) {
-                            $orderType = !empty($fields[$field]['query_builder']['type']) ?
-                                $fields[$field]['query_builder']['type'] : 'ASC';
-                            $orderBy = array($fields[$field]['query_builder']['orderby'] => $orderType);
+                    if (isset($fields[$field]) && !empty($fields[$field]['type'])) {
+                        switch ($fields[$field]['type']) {
+                            case 'btn_media':
+                                $content[$field] = $this->get('btn_media.provider.media')->getRepository()->findOneById($value);
+                                break;
+                            case 'entity':
+                                $orderBy = null;
+                                if (!empty($fields[$field]['query_builder']['orderby'])) {
+                                    $orderType = !empty($fields[$field]['query_builder']['type']) ?
+                                        $fields[$field]['query_builder']['type'] : 'ASC';
+                                    $orderBy = array($fields[$field]['query_builder']['orderby'] => $orderType);
+                                }
+                                $content[$field] =
+                                    $this->getDoctrine()
+                                         ->getManager()
+                                         ->getRepository($fields[$name]['class'])->findOneById($value, $orderBy);
+                                break;
+                            default:
+                                break;
                         }
-                        $content[$field] =
-                            $this->getDoctrine()
-                                 ->getManager()
-                                 ->getRepository($fields[$name]['class'])->findById($value, $orderBy);
                     }
                 }
             }
