@@ -73,9 +73,10 @@ class PageController extends Controller
         }
 
         return $this->render($twigTpl, array(
-            'page' => $page,
-            'backUrl' => $backUrl,
-            'content' => $content,
+            'node'     => $request->attributes->get('node', null),
+            'page'     => $page,
+            'backUrl'  => $backUrl,
+            'content'  => $content,
             'template' => $template,
         ));
     }
