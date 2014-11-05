@@ -4,6 +4,7 @@ namespace Btn\PageBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -73,6 +74,31 @@ class Configuration implements ConfigurationInterface
         ->end()
         ;
 
+        $this->addNodeContentProvider($rootNode);
+
         return $treeBuilder;
+    }
+
+    /**
+     *
+     */
+    private function addNodeContentProvider(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('node_content_provider')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('page')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->booleanNode('enabled')->defaultTrue()->end()
+                                ->scalarNode('route_name')->defaultValue('btn_page_page_show')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
     }
 }

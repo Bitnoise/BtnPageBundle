@@ -8,15 +8,14 @@ use Btn\BaseBundle\Provider\EntityProviderInterface;
 
 class PageNodeContentProvider implements NodeContentProviderInterface
 {
-    /** @var \Btn\BaseBundle\Provider\EntityProviderInterface $entityProvider */
-    protected $entityProvider;
+    protected $configuration;
 
     /**
      *
      */
-    public function __construct(EntityProviderInterface $entityProvider)
+    public function __construct(array $configuration)
     {
-        $this->entityProvider = $entityProvider;
+        $this->configuration = $configuration;
     }
 
     /**
@@ -24,7 +23,7 @@ class PageNodeContentProvider implements NodeContentProviderInterface
      */
     public function isEnabled()
     {
-        return true;
+        return $this->configuration['enabled'];
     }
 
     /**
@@ -32,14 +31,7 @@ class PageNodeContentProvider implements NodeContentProviderInterface
      */
     public function getForm()
     {
-        $pages = $this->entityProvider->getRepository()->findAll();
-
-        $data = array();
-        foreach ($pages as $page) {
-            $data[$page->getId()] = $page->getTitle();
-        }
-
-        return new NodeContentType($data);
+        return new NodeContentType();
     }
 
     /**
@@ -47,7 +39,7 @@ class PageNodeContentProvider implements NodeContentProviderInterface
      */
     public function resolveRoute($formData = array())
     {
-        return isset($formData['page']) ? 'btn_page_page_show' : null;
+        return isset($formData['page']) ? $this->configuration['route_name'] : null;
     }
 
     /**

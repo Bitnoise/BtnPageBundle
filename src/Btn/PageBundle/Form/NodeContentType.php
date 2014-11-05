@@ -4,23 +4,21 @@ namespace Btn\PageBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class NodeContentType extends AbstractType
 {
-    protected $data;
-
-    public function __construct($data = array())
-    {
-        $this->data = $data;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('page', 'choice', array(
+            ->add('page', 'btn_page', array(
+                'data_class'  => null,
                 'label'       => 'btn_page.page_node_content_provider.label',
                 'empty_value' => 'btn_page.page_node_content_provider.empty_value',
-                'choices'     => $this->data,
+                'ajax_reload' =>  true,
+                'constraints' => array(
+                    new Assert\NotBlank(),
+                ),
             ))
         ;
     }
