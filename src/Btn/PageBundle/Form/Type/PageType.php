@@ -4,10 +4,31 @@ namespace Btn\PageBundle\Form\Type;
 
 use Btn\AdminBundle\Form\Type\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Component\Form\FormInterface;
+use Btn\PageBundle\Form\DataTransformer\PageToIdTransformer;
+use Btn\PageBundle\Model\PageInterface;
+use Symfony\Component\Form\ReversedTransformer;
 use Doctrine\ORM\EntityRepository;
 
 class PageType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        parent::buildForm($builder, $options);
+
+        if (!empty($options['data_class'])) {
+            // add view transformer duo form exception
+            $builder->addViewTransformer(new ReversedTransformer(new PageToIdTransformer($this->entityProvider)));
+        } else {
+            $builder->addModelTransformer(new ReversedTransformer(new PageToIdTransformer($this->entityProvider)));
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -16,10 +37,10 @@ class PageType extends AbstractType
         parent::setDefaultOptions($resolver);
 
         $resolver->setDefaults(array(
-            'label'         => 'btn_page.form.type.page',
+            'label'         => 'btn_page.form.type.page.label',
             'empty_value'   => 'btn_page.form.type.page.empty_value',
             'class'         => $this->class,
-            'data_class'    => null,
+            'data_class'    => $this->class,
             'query_builder' => function (EntityRepository $em) {
                 return $em
                     ->createQueryBuilder('p')
@@ -30,6 +51,19 @@ class PageType extends AbstractType
             'expanded' => false,
             'multiple' => false,
         ));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        parent::buildView($view, $form, $options);
+
+        // correct value from data transformer for choice to select coreclty
+        if (!empty($options['data_class']) && $view->vars['value'] instanceof PageInterface) {
+            $view->vars['value'] = (string) $view->vars['value']->getId();
+        }
     }
 
     /**

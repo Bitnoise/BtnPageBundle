@@ -11,3 +11,7 @@ btn_page.template_empty_value: Choose template...
 btn_page.page_node_content_provider.name: Page provider
 btn_page.page_node_content_provider.label: Page
 btn_page.page_node_content_provider.empty_value: Select page
+
+btn_page.form.type.page: Page
+btn_page.form.type.page.label: Page
+btn_page.form.type.page.empty_value: Select page

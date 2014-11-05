@@ -14,6 +14,7 @@ services:
     btn_page.form.type.page:
         class: %btn_page.form.type.page.class%
         calls:
+            - [setEntityProvider, [@btn_page.provider.page]]
             - [setClass, [%btn_page.page.class%]]
         tags:
             - { name: form.type, alias: btn_page }
