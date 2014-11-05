@@ -1,6 +1,6 @@
 <?php
 
-namespace Btn\PageBundle\Entity;
+namespace Btn\PageBundle\Model;
 
 interface PageInterface
 {

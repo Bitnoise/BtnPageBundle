@@ -4,6 +4,7 @@ namespace Btn\PageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Btn\PageBundle\Model\PageInterface;
 
 /**
  * @ORM\MappedSuperclass()
