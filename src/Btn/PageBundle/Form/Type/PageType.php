@@ -7,9 +7,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
-use Btn\PageBundle\Form\DataTransformer\PageToIdTransformer;
+use Btn\PageBundle\Form\DataTransformer\IdToPageTransformer;
+use Btn\PageBundle\Form\DataTransformer\IdToPageQuietTransformer;
 use Btn\PageBundle\Model\PageInterface;
-use Symfony\Component\Form\ReversedTransformer;
 use Doctrine\ORM\EntityRepository;
 
 class PageType extends AbstractType
@@ -23,9 +23,9 @@ class PageType extends AbstractType
 
         if (!empty($options['data_class'])) {
             // add view transformer duo form exception
-            $builder->addViewTransformer(new ReversedTransformer(new PageToIdTransformer($this->entityProvider)));
+            $builder->addViewTransformer(new IdToPageTransformer($this->entityProvider));
         } else {
-            $builder->addModelTransformer(new ReversedTransformer(new PageToIdTransformer($this->entityProvider)));
+            $builder->addModelTransformer(new IdToPageQuietTransformer($this->entityProvider));
         }
     }
 
