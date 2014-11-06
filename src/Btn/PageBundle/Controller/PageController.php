@@ -62,7 +62,7 @@ class PageController extends Controller
                                 $content[$field] =
                                     $this->getDoctrine()
                                          ->getManager()
-                                         ->getRepository($fields[$name]['class'])->findOneById($value, $orderBy);
+                                         ->getRepository($fields[$field]['class'])->findOneById($value, $orderBy);
                                 break;
                             default:
                                 break;
