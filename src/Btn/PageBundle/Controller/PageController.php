@@ -48,21 +48,22 @@ class PageController extends Controller
             if (is_array($content) && $fields) {
                 foreach ($content as $field => $value) {
                     if (isset($fields[$field]) && !empty($fields[$field]['type'])) {
-                        switch ($fields[$field]['type']) {
+                        $fieldConfig = & $fields[$field];
+                        switch ($fieldConfig['type']) {
                             case 'btn_media':
                                 $content[$field] = $this->get('btn_media.provider.media')->getRepository()->findOneById($value);
                                 break;
                             case 'entity':
                                 $orderBy = null;
-                                if (!empty($fields[$field]['query_builder']['orderby'])) {
-                                    $orderType = !empty($fields[$field]['query_builder']['type']) ?
-                                        $fields[$field]['query_builder']['type'] : 'ASC';
-                                    $orderBy = array($fields[$field]['query_builder']['orderby'] => $orderType);
+                                if (!empty($fieldConfig['query_builder']['orderby'])) {
+                                    $orderType = !empty($fieldConfig['query_builder']['type']) ?
+                                        $fieldConfig['query_builder']['type'] : 'ASC';
+                                    $orderBy = array($fieldConfig['query_builder']['orderby'] => $orderType);
                                 }
                                 $content[$field] =
                                     $this->getDoctrine()
                                          ->getManager()
-                                         ->getRepository($fields[$field]['class'])->findOneById($value, $orderBy);
+                                         ->getRepository($fieldConfig['class'])->findOneById($value, $orderBy);
                                 break;
                             default:
                                 break;
