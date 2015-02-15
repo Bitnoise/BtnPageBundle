@@ -1,17 +1,25 @@
-btn_page.id: Id
-btn_page.list: Page list
-btn_page.title: Title
-btn_page.create: Page creation
-btn_page.content: Content
-btn_page.edit: Page edit
-btn_page.show: Page show
-btn_page.template: Template
-btn_page.template_empty_value: Choose template...
+btn_page.id: 'Id'
+btn_page.list: 'Page list'
+btn_page.title: 'Title'
+btn_page.create: 'Page creation'
+btn_page.content: 'Content'
+btn_page.edit: 'Page edit'
+btn_page.show: 'Page show'
+btn_page.template: 'Template'
+btn_page.template_empty_value: 'Choose template...'
 
-btn_page.page_node_content_provider.name: Page provider
-btn_page.page_node_content_provider.label: Page
-btn_page.page_node_content_provider.empty_value: Select page
+btn_page.page_node_content_provider.name: 'Page provider'
+btn_page.page_node_content_provider.label: 'Page'
+btn_page.page_node_content_provider.empty_value: 'Select page'
 
-btn_page.form.type.page: Page
-btn_page.form.type.page.label: Page
-btn_page.form.type.page.empty_value: Select page
+btn_page.form.type.page: 'Page'
+btn_page.form.type.page.label: 'Page'
+btn_page.form.type.page.empty_value: 'Select page'
+
+btn_page.menu_navbar.page_item.label: 'Pages'
+
+btn_page.pagecontrol_index: 'Page list'
+btn_page.pagecontrol_new: 'Page new'
+btn_page.pagecontrol_create: 'Page create'
+btn_page.pagecontrol_edit: 'Page edit'
+btn_page.pagecontrol_update: 'Page update'
