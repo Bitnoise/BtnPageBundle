@@ -60,10 +60,14 @@ class PageController extends Controller
                                         $fieldConfig['query_builder']['type'] : 'ASC';
                                     $orderBy = array($fieldConfig['query_builder']['orderby'] => $orderType);
                                 }
+                                $method = 'findOneById';
+                                if (isset($fieldConfig['multiple']) && true === $fieldConfig['multiple']) {
+                                    $method = 'findById';
+                                }
                                 $content[$field] =
                                     $this->getDoctrine()
                                          ->getManager()
-                                         ->getRepository($fieldConfig['class'])->findOneById($value, $orderBy);
+                                         ->getRepository($fieldConfig['class'])->$method($value, $orderBy);
                                 break;
                             default:
                                 break;
