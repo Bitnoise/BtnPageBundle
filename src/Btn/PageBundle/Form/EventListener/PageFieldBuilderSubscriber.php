@@ -55,7 +55,8 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
         } else {
             $template = $data->getTemplate();
             //prepare fields based on conf
-            if (!empty($this->templatesConf) && $template && $template !== '' && $template !== 'show') {
+            if (!empty($this->templatesConf) && $template && $template !== ''
+                && $template !== PageFormFactorySubscriber::DEFAULT_TEMPLATE_NAME) {
                 if (isset($this->templatesConf[$template])) {
                     $templateData = $this->templatesConf[$template];
                     //unserialize from content field
