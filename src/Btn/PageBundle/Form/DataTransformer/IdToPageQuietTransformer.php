@@ -13,8 +13,8 @@ class IdToPageQuietTransformer extends IdToPageTransformer
     {
         try {
             return parent::transform($id);
-        } catch(TransformationFailedException $exception) {
-            return null;
+        } catch (TransformationFailedException $exception) {
+            return;
         }
     }
 
@@ -25,8 +25,8 @@ class IdToPageQuietTransformer extends IdToPageTransformer
     {
         try {
             return parent::reverseTransform($page);
-        } catch(TransformationFailedException $exception) {
-            return null;
+        } catch (TransformationFailedException $exception) {
+            return;
         }
     }
 }

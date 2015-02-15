@@ -4,7 +4,6 @@ namespace Btn\PageBundle\Form\EventListener;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class PageFieldBuilderSubscriber implements EventSubscriberInterface
 {
@@ -12,7 +11,7 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
     protected $templatesConf = array();
 
     /**
-     * @param array  $bundleConf
+     * @param array $bundleConf
      */
     public function __construct(array $templatesConf = array())
     {
@@ -41,7 +40,7 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
         if (!empty($this->templates)) {
             $form->add('template', 'choice', array(
                     'choices' => $this->templates,
-                    'attr' => array('class' => 'on-template-change')
+                    'attr' => array('class' => 'on-template-change'),
                 ));
         }
         //add title select field

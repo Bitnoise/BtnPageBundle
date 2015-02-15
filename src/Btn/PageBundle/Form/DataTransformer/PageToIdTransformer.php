@@ -42,7 +42,7 @@ class PageToIdTransformer implements DataTransformerInterface
     public function reverseTransform($id)
     {
         if (!$id) {
-            return null;
+            return;
         }
 
         if ($id instanceof PageInterface) {

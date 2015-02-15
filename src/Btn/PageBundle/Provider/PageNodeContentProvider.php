@@ -4,7 +4,6 @@ namespace Btn\PageBundle\Provider;
 
 use Btn\NodeBundle\Provider\NodeContentProviderInterface;
 use Btn\PageBundle\Form\NodeContentType;
-use Btn\BaseBundle\Provider\EntityProviderInterface;
 
 class PageNodeContentProvider implements NodeContentProviderInterface
 {
