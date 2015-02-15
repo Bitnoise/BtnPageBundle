@@ -58,6 +58,7 @@ class Configuration implements ConfigurationInterface
                                         ->booleanNode('mapped')->defaultValue(false)->end()
                                         ->variableNode('attr')->end()
                                         ->scalarNode('class')->end()
+                                        ->scalarNode('group_by')->end()
                                         ->variableNode('query_builder')->end()
                                         ->scalarNode('property')->end()
                                         ->booleanNode('required')->end()
