@@ -28,8 +28,8 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
         return array(
             FormEvents::PRE_SET_DATA => 'preSetData',
             FormEvents::PRE_SUBMIT   => 'preSubmit',
-            FormEvents::POST_BIND    => 'postBind'
-            );
+            FormEvents::POST_BIND    => 'postBind',
+        );
     }
 
     public function preSetData(FormEvent $event)

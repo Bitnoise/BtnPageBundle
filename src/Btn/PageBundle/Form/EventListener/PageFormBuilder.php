@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class PageFormBuilder
 {
     /**
-     * $templatesConf array of objects with templates configuration
+     * $templates array of objects with templates configuration
      * @var array
      */
     private $templates = array();
