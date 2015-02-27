@@ -38,7 +38,7 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
 
         //add template select field
         if (!empty($this->templates)) {
-            $form->add('template', 'choice', array(
+            $form->add('template', 'btn_select2_choice', array(
                     'choices' => $this->templates,
                     'attr' => array('class' => 'on-template-change'),
                 ));
