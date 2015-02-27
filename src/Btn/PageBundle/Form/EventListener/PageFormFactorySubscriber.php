@@ -5,6 +5,8 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Btn\BaseBundle\Provider\EntityProviderInterface;
+use Doctrine\ORM\EntityManager;
 
 class PageFormFactorySubscriber implements EventSubscriberInterface
 {
@@ -25,7 +27,7 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
      * @param array  $bundleConf
      * @param router $router
      */
-    public function __construct(array $templatesConf = array(), UrlGeneratorInterface $router, $em)
+    public function __construct(array $templatesConf = array(), UrlGeneratorInterface $router, EntityManager $em)
     {
         /* set templates config */
         $this->templatesConf = $templatesConf;
@@ -35,6 +37,14 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
 
         /* create custom form builder for this factory */
         $this->formBuilder   = new PageFormBuilder($this->templates, $em);
+    }
+
+    /**
+     * @param EntityProviderInterface $mediaProvider
+     */
+    public function setMediaProvider(EntityProviderInterface $mediaProvider)
+    {
+        $this->formBuilder->setMediaProvider($mediaProvider);
     }
 
     /**

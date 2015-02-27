@@ -10,6 +10,8 @@ services:
             templatesConf: %btn_page.templates%
             router: @router
             em: @doctrine.orm.entity_manager
+        calls:
+            - [setMediaProvider, [@?btn_media.provider.media]]
 
     btn_page.form.type.page:
         class: %btn_page.form.type.page.class%
