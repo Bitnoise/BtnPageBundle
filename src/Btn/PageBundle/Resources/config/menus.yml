@@ -1,6 +1,7 @@
 services:
     #add link to the CP top menu
     btn_page.menu_navbar.page_item:
+        public: false
         class: %btn_admin.menu_item.class%
         factory: [@btn_admin.menu_builder, createMenu]
         arguments: [@request, 'btn_page.menu_navbar.page_item.label', 'btn_page_pagecontrol_index', [], []]
