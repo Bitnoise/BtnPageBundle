@@ -32,9 +32,9 @@ class PageType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
-        parent::setDefaultOptions($resolver);
+        parent::configureOptions($resolver);
 
         $resolver->setDefaults(array(
             'label'         => 'btn_page.form.type.page.label',
