@@ -4,6 +4,8 @@ namespace Btn\PageBundle\Form\EventListener;
 use Symfony\Component\Form\Form;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Btn\BaseBundle\Provider\EntityProviderInterface;
+use Doctrine\ORM\EntityManager;
 
 class PageFormBuilder
 {
@@ -25,13 +27,24 @@ class PageFormBuilder
      */
     private $content;
 
+    /** @var Btn\BaseBundle\Provider\EntityProviderInterface $mediaProvider */
+    private $mediaProvider;
+
     /**
      *
      */
-    public function __construct($templates, $em)
+    public function __construct(array $templates, EntityManager $em)
     {
         $this->em        = $em;
         $this->templates = $templates;
+    }
+
+    /**
+     * @param EntityProviderInterface $mediaProvider
+     */
+    public function setMediaProvider(EntityProviderInterface $mediaProvider)
+    {
+        $this->mediaProvider = $mediaProvider;
     }
 
     /**
@@ -137,6 +150,8 @@ class PageFormBuilder
                         $this->em->getRepository($params['class'])->findById($content)
                     );
                 }
+            } elseif ($type === 'btn_media') {
+                $content = $this->mediaProvider->getRepository()->findOneById($this->content[$field]);
             }
 
             return $content;
