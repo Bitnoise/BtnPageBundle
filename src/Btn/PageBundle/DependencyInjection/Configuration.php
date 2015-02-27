@@ -64,7 +64,7 @@ class Configuration implements ConfigurationInterface
                                         ->booleanNode('required')->end()
                                         ->booleanNode('multiple')->end()
                                         ->booleanNode('expanded')->end()
-                                        ->scalarNode('empty_value')->end()
+                                        ->scalarNode('placeholder')->end()
                                     ->end()
                                 ->end()
                             ->end()

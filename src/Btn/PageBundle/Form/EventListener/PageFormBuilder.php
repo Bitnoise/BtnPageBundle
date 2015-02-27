@@ -73,7 +73,7 @@ class PageFormBuilder
             'choices'   => $templates,
             'attr'      => array('class' => 'on-template-change'),
             'mapped'    => true,
-            'empty_value' => 'btn_page.template_empty_value',
+            'placeholder' => 'btn_page.template.placeholder',
         ));
     }
 

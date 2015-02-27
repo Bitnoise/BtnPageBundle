@@ -6,15 +6,15 @@ btn_page.content: 'Content'
 btn_page.edit: 'Page edit'
 btn_page.show: 'Page show'
 btn_page.template: 'Template'
-btn_page.template_empty_value: 'Choose template...'
+btn_page.template.placeholder: 'Choose template...'
 
 btn_page.page_node_content_provider.name: 'Page provider'
 btn_page.page_node_content_provider.label: 'Page'
-btn_page.page_node_content_provider.empty_value: 'Select page'
+btn_page.page_node_content_provider.placeholder: 'Select page'
 
 btn_page.form.type.page: 'Page'
 btn_page.form.type.page.label: 'Page'
-btn_page.form.type.page.empty_value: 'Select page'
+btn_page.form.type.page.placeholder: 'Select page'
 
 btn_page.menu_navbar.page_item.label: 'Pages'
 

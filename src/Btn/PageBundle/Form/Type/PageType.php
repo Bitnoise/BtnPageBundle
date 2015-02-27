@@ -38,7 +38,7 @@ class PageType extends AbstractType
 
         $resolver->setDefaults(array(
             'label'         => 'btn_page.form.type.page.label',
-            'empty_value'   => 'btn_page.form.type.page.empty_value',
+            'placeholder'   => 'btn_page.form.type.page.placeholder',
             'class'         => $this->class,
             'data_class'    => $this->class,
             'query_builder' => function (EntityRepository $em) {
