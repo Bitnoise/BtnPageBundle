@@ -69,11 +69,11 @@ class PageFormBuilder
     public function setTemplateSelect($templates)
     {
         $this->form->add('template', 'btn_select2_choice', array(
-            'label'     => 'btn_page.template',
-            'choices'   => $templates,
-            'attr'      => array('class' => 'on-template-change'),
-            'mapped'    => true,
+            'label'       => 'btn_page.template',
             'empty_value' => 'btn_page.template_empty_value',
+            'choices'     => $templates,
+            'attr'        => array('class' => 'on-template-change'),
+            'mapped'      => true,
         ));
     }
 
