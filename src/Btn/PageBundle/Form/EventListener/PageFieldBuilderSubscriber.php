@@ -27,7 +27,7 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
         return array(
             FormEvents::PRE_SET_DATA => 'preSetData',
             FormEvents::PRE_SUBMIT   => 'preSubmit',
-            FormEvents::POST_BIND    => 'postBind',
+            FormEvents::POST_SUBMIT  => 'postSubmit',
         );
     }
 
@@ -99,7 +99,7 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function postBind(FormEvent $event)
+    public function postSubmit(FormEvent $event)
     {
         $data = $event->getData();
     }
