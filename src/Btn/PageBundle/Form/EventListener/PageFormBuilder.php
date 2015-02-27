@@ -68,7 +68,7 @@ class PageFormBuilder
      */
     public function setTemplateSelect($templates)
     {
-        $this->form->add('template', 'choice', array(
+        $this->form->add('template', 'btn_select2_choice', array(
             'label'       => 'btn_page.template.label',
             'placeholder' => 'btn_page.template.placeholder',
             'choices'     => $templates,
@@ -86,6 +86,7 @@ class PageFormBuilder
     {
         switch ($type) {
             case 'entity':
+            case 'btn_select2_entity':
                 $params['query_builder'] = $this->getSelectQueryFunction($params);
                 break;
 
@@ -126,7 +127,7 @@ class PageFormBuilder
         if (!empty($this->content[$field])) {
             $content = $this->content[$field];
 
-            if ($type === 'entity') {
+            if ($type === 'entity' || $type === 'btn_select2_entity') {
                 /* if entity field was normal select (<select>) */
                 if (is_string($content)) {
                     $content = $this->em->getRepository($params['class'])->findOneById($content);
