@@ -54,6 +54,7 @@ class PageController extends Controller
                                 $content[$field] = $this->get('btn_media.provider.media')->getRepository()->findOneById($value);
                                 break;
                             case 'entity':
+                            case 'btn_select2_entity':
                                 $orderBy = null;
                                 if (!empty($fieldConfig['query_builder']['orderby'])) {
                                     $orderType = !empty($fieldConfig['query_builder']['type']) ?
