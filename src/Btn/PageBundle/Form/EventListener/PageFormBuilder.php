@@ -10,19 +10,22 @@ use Doctrine\ORM\EntityManager;
 class PageFormBuilder
 {
     /**
-     * $templates array of objects with templates configuration
+     * $templates array of objects with templates configuration.
+     *
      * @var array
      */
     private $templates = array();
 
     /**
-     * $form
+     * $form.
+     *
      * @var \Symfony\Component\Form\Form
      */
     private $form = null;
 
     /**
-     * $content content of extra fields
+     * $content content of extra fields.
+     *
      * @var array
      */
     private $content;
@@ -56,7 +59,8 @@ class PageFormBuilder
     }
 
     /**
-     * setForm set form object to work on
+     * setForm set form object to work on.
+     *
      * @param Form $form
      */
     public function setForm(Form $form)
@@ -68,7 +72,7 @@ class PageFormBuilder
     }
 
     /**
-     * setTitle set default form title
+     * setTitle set default form title.
      */
     public function setTitle()
     {
@@ -76,7 +80,8 @@ class PageFormBuilder
     }
 
     /**
-     * setTemplateSelect add template select to form
+     * setTemplateSelect add template select to form.
+     *
      * @param [type] $templates
      */
     public function setTemplateSelect($templates)
@@ -159,7 +164,8 @@ class PageFormBuilder
     }
 
     /**
-     * addField add passed field to form, also with custom params
+     * addField add passed field to form, also with custom params.
+     *
      * @param string $field
      * @param array  $params
      */
@@ -181,7 +187,7 @@ class PageFormBuilder
     }
 
     /**
-     * addDefault add default BtnWysiwyg as content field
+     * addDefault add default BtnWysiwyg as content field.
      */
     public function addDefault($clearContent = false)
     {

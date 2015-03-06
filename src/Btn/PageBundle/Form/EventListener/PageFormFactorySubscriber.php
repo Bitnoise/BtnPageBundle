@@ -11,12 +11,13 @@ use Doctrine\ORM\EntityManager;
 class PageFormFactorySubscriber implements EventSubscriberInterface
 {
     /**
-     * default template name
+     * default template name.
      */
     const DEFAULT_TEMPLATE_NAME = 'show';
 
     /**
-     * $templates key value list of templates
+     * $templates key value list of templates.
+     *
      * @var array
      */
     private $templates = array();
@@ -48,7 +49,7 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
     }
 
     /**
-     * getSubscribedEvents
+     * getSubscribedEvents.
      *
      * Tells the dispatcher that you want to listen on the form.pre_set_data
      * event and that the preSetData method should be called.
@@ -65,7 +66,7 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
     }
 
     /**
-     * checkTemplates check if template configs are declared and template isn't default one
+     * checkTemplates check if template configs are declared and template isn't default one.
      */
     private function checkTemplates($template)
     {
@@ -121,10 +122,9 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
     }
 
     /**
-     * preSubmit serialize data from custom fields to the content field
+     * preSubmit serialize data from custom fields to the content field.
      *
-     * @param  FormEvent $event
-     * @return void
+     * @param FormEvent $event
      */
     public function preSubmit(FormEvent $event)
     {
@@ -144,9 +144,10 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
     }
 
     /**
-     * postBind
+     * postBind.
      *
-     * @param  FormEvent $event
+     * @param FormEvent $event
+     *
      * @return array
      */
     public function postBind(FormEvent $event)
@@ -157,9 +158,10 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
     }
 
     /**
-     * getSimpleArrayTemplates prepare simple array for templates select field
+     * getSimpleArrayTemplates prepare simple array for templates select field.
      *
-     * @param  array $templatesConf
+     * @param array $templatesConf
+     *
      * @return array
      */
     private function getSimpleArrayTemplates($templatesConf = array())
