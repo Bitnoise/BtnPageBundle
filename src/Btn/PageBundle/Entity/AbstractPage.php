@@ -12,7 +12,7 @@ use Btn\PageBundle\Model\PageInterface;
 abstract class AbstractPage implements PageInterface
 {
     /**
-     * Unique id of the page
+     * Unique id of the page.
      *
      * @var integer
      *
@@ -23,7 +23,7 @@ abstract class AbstractPage implements PageInterface
     protected $id;
 
     /**
-     * Page title
+     * Page title.
      *
      * @var string
      *
@@ -33,7 +33,7 @@ abstract class AbstractPage implements PageInterface
     protected $title;
 
     /**
-     * Page content
+     * Page content.
      *
      * @var string
      *
@@ -43,7 +43,7 @@ abstract class AbstractPage implements PageInterface
     protected $content;
 
     /**
-     * Page content
+     * Page content.
      *
      * @var string
      *
@@ -59,7 +59,7 @@ abstract class AbstractPage implements PageInterface
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -69,9 +69,10 @@ abstract class AbstractPage implements PageInterface
     }
 
     /**
-     * Set content
+     * Set content.
      *
-     * @param  string $content
+     * @param string $content
+     *
      * @return Page
      */
     public function setContent($content)
@@ -82,7 +83,7 @@ abstract class AbstractPage implements PageInterface
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string
      */
@@ -92,9 +93,10 @@ abstract class AbstractPage implements PageInterface
     }
 
     /**
-     * Set title
+     * Set title.
      *
-     * @param  string $title
+     * @param string $title
+     *
      * @return Page
      */
     public function setTitle($title)
@@ -105,7 +107,7 @@ abstract class AbstractPage implements PageInterface
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -115,9 +117,10 @@ abstract class AbstractPage implements PageInterface
     }
 
     /**
-     * Set template
+     * Set template.
      *
-     * @param  string $template
+     * @param string $template
+     *
      * @return Page
      */
     public function setTemplate($template)
@@ -128,7 +131,7 @@ abstract class AbstractPage implements PageInterface
     }
 
     /**
-     * Get template
+     * Get template.
      *
      * @return string
      */

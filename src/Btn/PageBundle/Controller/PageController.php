@@ -9,12 +9,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Btn\PageBundle\Model\PageInterface;
 
 /**
- * Page controller
+ * Page controller.
  */
 class PageController extends Controller
 {
     /**
-     * Finds and displays a one news
+     * Finds and displays a one news.
      *
      * @Route("/_page/{id}", name="btn_page_page_show", requirements={"id" = "\d+"})
      */
