@@ -1,8 +1,24 @@
-//submit form on select change
-$('#pageContainer').on('change', 'select.on-template-change', function() {
+/* global BtnApp, jQuery */
+(function(app, $, undefined){
+    'use strict';
 
-    // console.log($('option:selected', this).val());
-    $(this).parents('form').submit();
+    var addEvents = function(context) {
+        //submit form on select change
+        $(context).find('#pageContainer').on('change', 'select.on-template-change', function() {
 
-    return false;
-});
+            // console.log($('option:selected', this).val());
+            $(this).parents('form').submit();
+
+            return false;
+        });
+    };
+
+    app.init(function(msg, data) {
+        addEvents(data.context);
+    });
+
+    app.refresh(function(msg, data) {
+        addEvents(data.context);
+    });
+
+})(BtnApp, jQuery);

@@ -6,11 +6,6 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
-/**
- * This is the class that validates and merges configuration from your app/config files.
- *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
- */
 class Configuration implements ConfigurationInterface
 {
     /**
@@ -46,14 +41,22 @@ class Configuration implements ConfigurationInterface
                     ->prototype('array')
                         ->children()
                             // ->scalarNode('name')->cannotBeEmpty()->defaultValue(null)->end()
-                            ->scalarNode('template')->isRequired()->cannotBeEmpty()->example('BtnPageBundle:Example:template.html.twig')->end()
+                            ->scalarNode('template')
+                                ->isRequired()
+                                ->cannotBeEmpty()
+                                ->example('BtnPageBundle:Example:template.html.twig')
+                            ->end()
                             ->scalarNode('title')->isRequired()->cannotBeEmpty()->example('Example template')->end()
                             ->booleanNode('hide_content')->defaultValue(false)->end()
                             ->arrayNode('fields')
                                 ->requiresAtLeastOneElement()
                                 ->prototype('array')
                                     ->children()
-                                        ->scalarNode('type')->defaultValue('btn_wysiwyg')->cannotBeEmpty()->example('text')->end()
+                                        ->scalarNode('type')
+                                            ->defaultValue('btn_wysiwyg')
+                                            ->cannotBeEmpty()
+                                            ->example('text')
+                                        ->end()
                                         ->scalarNode('label')->defaultValue(null)->end()
                                         ->booleanNode('mapped')->defaultValue(false)->end()
                                         ->variableNode('attr')->end()

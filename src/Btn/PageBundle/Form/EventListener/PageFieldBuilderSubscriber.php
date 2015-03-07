@@ -27,10 +27,12 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
         return array(
             FormEvents::PRE_SET_DATA => 'preSetData',
             FormEvents::PRE_SUBMIT   => 'preSubmit',
-            FormEvents::POST_SUBMIT  => 'postSubmit',
         );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
     public function preSetData(FormEvent $event)
     {
         //get form object
@@ -39,9 +41,9 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
         //add template select field
         if (!empty($this->templates)) {
             $form->add('template', 'btn_select2_choice', array(
-                    'choices' => $this->templates,
-                    'attr' => array('class' => 'on-template-change'),
-                ));
+                'choices' => $this->templates,
+                'attr'    => array('class' => 'on-template-change'),
+            ));
         }
         //add title select field
         $form->add('title');
@@ -97,11 +99,6 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
             unset($data['template']);
             $page->setContent(serialize($data));
         }
-    }
-
-    public function postSubmit(FormEvent $event)
-    {
-        $data = $event->getData();
     }
 
     private function getSimpleArrayTemplates($templatesConf = array())

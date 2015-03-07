@@ -25,10 +25,11 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
     private $templatesConf;
 
     /**
-     * @param array  $bundleConf
-     * @param router $router
+     * @param array         $templatesConf
+     * @param router        $router
+     * @param EntityManager $em
      */
-    public function __construct(array $templatesConf = array(), UrlGeneratorInterface $router, EntityManager $em)
+    public function __construct(array $templatesConf, UrlGeneratorInterface $router, EntityManager $em)
     {
         /* set templates config */
         $this->templatesConf = $templatesConf;

@@ -1,5 +1,15 @@
+parameters:
+    btn_page.helper.page.class: Btn\PageBundle\Helper\PageHelper
+
 services:
     btn_page.provider.page:
         class: %btn_base.provider.entity.class%
         parent: btn_base.provider.abstract_entity
         arguments: ['%btn_page.page.class%']
+
+    btn_page.helper.page:
+        class: %btn_page.helper.page.class%
+        arguments:
+            templaets: %btn_page.templates%
+            entityManager: @doctrine.orm.entity_manager
+            mediaProvider: @?btn_media.provider.media
