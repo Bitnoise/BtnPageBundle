@@ -27,7 +27,6 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
         return array(
             FormEvents::PRE_SET_DATA => 'preSetData',
             FormEvents::PRE_SUBMIT   => 'preSubmit',
-            FormEvents::POST_SUBMIT  => 'postSubmit',
         );
     }
 
@@ -97,11 +96,6 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
             unset($data['template']);
             $page->setContent(serialize($data));
         }
-    }
-
-    public function postSubmit(FormEvent $event)
-    {
-        $data = $event->getData();
     }
 
     private function getSimpleArrayTemplates($templatesConf = array())
