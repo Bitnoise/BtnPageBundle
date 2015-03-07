@@ -30,6 +30,9 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
         );
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
     public function preSetData(FormEvent $event)
     {
         //get form object
