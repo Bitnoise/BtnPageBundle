@@ -62,7 +62,6 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
         return array(
             FormEvents::PRE_SET_DATA => 'preSetData',
             FormEvents::PRE_SUBMIT   => 'preSubmit',
-            FormEvents::POST_BIND    => 'postBind',
         );
     }
 
@@ -142,20 +141,6 @@ class PageFormFactorySubscriber implements EventSubscriberInterface
 
             $page->setContent(serialize($data));
         }
-    }
-
-    /**
-     * postBind.
-     *
-     * @param FormEvent $event
-     *
-     * @return array
-     */
-    public function postBind(FormEvent $event)
-    {
-        $data = $event->getData();
-
-        return $data;
     }
 
     /**
