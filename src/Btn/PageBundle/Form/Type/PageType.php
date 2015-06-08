@@ -46,7 +46,7 @@ class PageType extends AbstractType
                     ->createQueryBuilder('p')
                     ->orderBy('p.title', 'ASC');
             },
-            'property' => 'title',
+            'choice_label' => 'title',
             'required' => false,
             'expanded' => false,
             'multiple' => false,
