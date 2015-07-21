@@ -76,7 +76,9 @@ class PageFormBuilder
      */
     public function setTitle()
     {
-        $this->form->add('title');
+        $this->form->add('title', null, array(
+            'label' => 'btn_page.form.page.title',
+        ));
     }
 
     /**
@@ -191,6 +193,14 @@ class PageFormBuilder
      */
     public function addDefault($clearContent = false)
     {
-        $this->form->add('content', 'btn_wysiwyg', $clearContent ? array('data' => '') : array());
+        $options = array(
+            'label' => 'btn_page.form.page.content',
+        );
+
+        if ($clearContent) {
+            $options['data'] = '';
+        }
+
+        $this->form->add('content', 'btn_wysiwyg', $options);
     }
 }
