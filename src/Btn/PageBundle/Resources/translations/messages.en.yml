@@ -23,3 +23,7 @@ btn_page.pagecontrol_new: 'Page new'
 btn_page.pagecontrol_create: 'Page create'
 btn_page.pagecontrol_edit: 'Page edit'
 btn_page.pagecontrol_update: 'Page update'
+
+btn_page.form.page.template: 'Template'
+btn_page.form.page.title: 'Title'
+btn_page.form.page.content: 'Content'

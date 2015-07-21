@@ -41,12 +41,15 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
         //add template select field
         if (!empty($this->templates)) {
             $form->add('template', 'btn_select2_choice', array(
+                'label'   => 'btn_page.form.page.template',
                 'choices' => $this->templates,
                 'attr'    => array('class' => 'on-template-change'),
             ));
         }
         //add title select field
-        $form->add('title');
+        $form->add('title', null, array(
+            'label' => 'btn_page.form.page.title',
+        ));
 
         //get form data -> entity Page
         $data = $event->getData();
@@ -80,7 +83,9 @@ class PageFieldBuilderSubscriber implements EventSubscriberInterface
                 }
             } else {
                 //render default form
-                $form->add('content', 'btn_wysiwyg');
+                $form->add('content', 'btn_wysiwyg', array(
+                    'label' => 'btn_page.form.page.content',
+                ));
             }
         }
     }
