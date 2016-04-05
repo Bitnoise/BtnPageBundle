@@ -28,7 +28,11 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "http://bitnoise.github.io/packages/"
+            "url": "https://bitnoise.github.io/packages/"
+        },
+        {
+            "type": "composer",
+            "url": "https://adam187.github.io/packages/"
         }
     ],
     "autoload": {
